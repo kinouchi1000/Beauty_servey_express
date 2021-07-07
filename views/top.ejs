@@ -12,11 +12,60 @@
 </head>
 
 <body>
-  <h1>BMC入会申込書</h1>
+  <h1>気になる部分にチェックマークを入れてください．</h1>
   <div class="container">
     <form class="needs-validation" action="/submit_result" method="post" name="Beauty" novalidate>
-
-
+      <div class="row">
+        <!-- 額 -->
+        <div class="col-md">
+          <table class="table table-borderless">
+            <tr>
+              <th rowspan="3">1.額</th>
+              <td>
+                <input type="checkbox" name="Q101" id="Q101" value="しわ">
+                <label class="form-label" for="Q101">しわ</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" name="Q102" id="Q102" value="丸くしたい">
+                <label class="form-label" for="Q102">丸くしたい</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" name="Q103" id="Q103" value="眉間のシワ">
+                <label class="form-label" for="Q103">眉間のしわ</label>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <!-- 目元 -->
+        <div class="col-md">
+          <table class="table table-borderless">
+            <tr>
+              <th rowspan="3">２.目元</th>
+              <td>
+                <input type="checkbox" name="Q201" id="Q201" value="二重の形・幅">
+                <label class="form-label" for="Q201">二重の形・幅</label>
+              </td>
+            </tr>
+            <!-- ###############################################ここ以降を編集 -->
+            <tr>
+              <td>
+                <input type="checkbox" name="Q102" id="Q102" value="丸くしたい">
+                <label class="form-label" for="Q102">丸くしたい</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" name="Q103" id="Q103" value="眉間のシワ">
+                <label class="form-label" for="Q103">眉間のしわ</label>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
       <!-- 画像書き込み -->
       <canvas id="board1" width="570" height="442"></canvas>
       <input type="button" value="clear1" id="clear1">
