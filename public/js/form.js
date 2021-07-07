@@ -1,20 +1,3 @@
-const job_other_item = document.getElementById("job_other_item");
-const job_other_form = document.getElementById("job_other");
-const job_select = document.getElementById("job");
-
-/* なぜかjob_other_itemがnullになっている。 */
-job_other_item.style.display = "none";
-
-job_select.onchange = function () {
-  if (job_select.value === "その他") {
-    job_other_item.style.display = "block";
-    job_other_form.removeAttribute("disabled");
-  } else {
-    job_other_item.style.display = "none";
-    job_other_form.setAttribute("disabled", true);
-  }
-};
-
 /* Validation用 */
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -40,3 +23,10 @@ job_select.onchange = function () {
     );
   });
 })();
+
+// canvasを画像で保存
+/* $("#download").click(function(){
+  canvas = document.getElementById('canvas');
+  var base64 = canvas.toDataURL("image/jpeg");
+  document.getElementById("download").href = base64;
+}); */
