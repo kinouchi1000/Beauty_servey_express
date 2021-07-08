@@ -116,4 +116,16 @@ window.onload = () => {
       ctx2.drawImage(chara, 0, 0, width2, height2);
     };
   }
+
+  /* 顔イラスト表示 */
+  // canvas準備
+  const Face = document.querySelector("#Face"); //getElementById()等でも可。オブジェクトが取れれば良い。
+  const ctx = Face.getContext("2d");
+
+  // 画像読み込み
+  const chara = new Image();
+  chara.src = "/image/Face.png"; // 画像のURLを指定
+  chara.onload = () => {
+    ctx.drawImage(chara, 0, 0, 335, 526);
+  };
 };

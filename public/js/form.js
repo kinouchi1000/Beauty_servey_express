@@ -12,11 +12,12 @@
     form.addEventListener(
       "submit",
       function (event) {
+        //バリデーションエラーが無いか確認
         if (!form.checkValidity()) {
           event.preventDefault();
           event.stopPropagation();
         }
-
+        //form にwas-validatedクラスを付加
         form.classList.add("was-validated");
       },
       false

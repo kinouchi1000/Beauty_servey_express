@@ -12,6 +12,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/submit_result", (req, res) => {
+  console.log("受信完了完了");
   file_name = "csvData/data_" + req.body.name + ".csv";
   let data = "";
   let i = 0;

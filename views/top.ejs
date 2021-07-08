@@ -12,65 +12,236 @@
 </head>
 
 <body>
-  <h1>気になる部分にチェックマークを入れてください．</h1>
-  <div class="container">
+  <h1>《気になる部分にチェックマークを入れてください》</h1>
+  <div class="container mb-3">
     <form class="needs-validation" action="/submit_result" method="post" name="Beauty" novalidate>
-      <div class="row">
-        <!-- 額 -->
-        <div class="col-md">
-          <table class="table table-borderless">
-            <tr>
-              <th rowspan="3">1.額</th>
-              <td>
-                <input type="checkbox" name="Q101" id="Q101" value="しわ">
-                <label class="form-label" for="Q101">しわ</label>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox" name="Q102" id="Q102" value="丸くしたい">
-                <label class="form-label" for="Q102">丸くしたい</label>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox" name="Q103" id="Q103" value="眉間のシワ">
-                <label class="form-label" for="Q103">眉間のしわ</label>
-              </td>
-            </tr>
-          </table>
+      <div class="row mb-3">
+        <div class="col-8">
+          <div class="row row-cols-1  row-cols-lg-2 row-cols-xxl-3 g-4">
+            <!-- 額 -->
+            <div class="col">
+              <div class="card h-100">
+                <table class="table table-borderless">
+                  <tr>
+                    <th width="100">1.額</th>
+                    <td>
+                      <label class="form-label"><input type="checkbox" name="Q1" value="しわ">しわ</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q1" value="丸くしたい">丸くしたい</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q1" value="眉間のしわ">眉間のしわ</label>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- 目元 -->
+            <div class="col">
+              <div class="card h-100">
+                <table class="table table-borderless">
+                  <tr>
+                    <th width="100">２.目元</th>
+                    <td>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="二重の形・幅">二重の形・幅</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="丸くしたい">丸くしたい</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="目頭・目尻の形">目頭・目尻の形</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="目の下のくま">目の下のくま</label>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <!-- 口元 -->
+            <div class="col">
+              <div class="card h-100">
+                <table class="table table-borderless">
+                  <tr>
+                    <th width="100">3.口元</th>
+                    <td>
+                      <label class="form-label"><input type="checkbox" name="Q3" value="ほうれい線">ほうれい線</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q3" value="口角">口角</label><br>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <!-- 首元 -->
+            <div class="col">
+              <div class="card h-100">
+    
+                <table class="table table-borderless">
+                  <tr>
+                    <th width="100">4.首元</th>
+                    <td>
+                      <label class="form-label"><input type="checkbox" name="Q4" value="フェイスラインのたるみ">フェイスラインのたるみ</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q4" value="首元のしわ">首元のしわ</label><br>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <!-- 肌質 -->
+            <div class="col">
+              <div class="card h-100">
+                <table class="table table-borderless">
+                  <tr>
+                    <th width="100">5.肌質</th>
+                    <td>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="毛穴・ニキビ跡">毛穴・ニキビ跡</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="シミ・そばかす">シミ・そばかす</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="肝斑（かんぱん）">肝斑（かんぱん）</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="ハリ・うるおい">ハリ・うるおい</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="にきび">にきび</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="赤み">赤み</label><br>
+                    </td>
+                  </tr>
+                </table>
+    
+              </div>
+            </div>
+    
+            <!-- 鼻 -->
+            <div class="col">
+              <div class="card h-100">
+                <table class="table table-borderless">
+                  <tr>
+                    <th width="100">6.鼻</th>
+                    <td>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="鼻筋の高さ">鼻筋の高さ</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="鼻先を小さく">鼻先を小さく</label><br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="小鼻を小さく">小鼻を小さく</label><br>
+                    </td>
+                  </tr>
+                </table>
+    
+              </div>
+            </div>
+    
+             <!-- 脂肪 -->
+             <div class="col">
+              <div class="card h-100">
+                <table class="table table-borderless">
+                  <tr>
+                    <th width="100">7.脂肪</th>
+                    <td>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="ホホ"></label>ホホ<br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="アゴ下"></label>アゴ下<br>
+                      <label class="form-label"><input type="checkbox" name="Q2" value="エラの筋肉"></label>エラの筋肉<br>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- 目元 -->
-        <div class="col-md">
-          <table class="table table-borderless">
-            <tr>
-              <th rowspan="3">２.目元</th>
-              <td>
-                <input type="checkbox" name="Q201" id="Q201" value="二重の形・幅">
-                <label class="form-label" for="Q201">二重の形・幅</label>
-              </td>
-            </tr>
-            <!-- ###############################################ここ以降を編集 -->
-            <tr>
-              <td>
-                <input type="checkbox" name="Q102" id="Q102" value="丸くしたい">
-                <label class="form-label" for="Q102">丸くしたい</label>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox" name="Q103" id="Q103" value="眉間のシワ">
-                <label class="form-label" for="Q103">眉間のしわ</label>
-              </td>
-            </tr>
-          </table>
+        <div class="col-4">
+          <canvas id = "Face" width="600" height=600></canvas>
         </div>
       </div>
+      <h1>《痩せたい部分に○をつけてください》</h1>
       <!-- 画像書き込み -->
-      <canvas id="board1" width="570" height="442"></canvas>
-      <input type="button" value="clear1" id="clear1">
-      <canvas id="board2" width="292" height="393"></canvas>
-      <input type="button" value="clear2" id="clear2">
+      <div class="row mx-5 ">
+        <div class="col-auto ">
+          <div class="container">
+            <canvas id="board1" width="570" height="350"></canvas>
+            <div class="d-grid gap-2 col-3 mx-auto">
+              <input type="button" class="btn btn-primary" value="clear1" id="clear1">
+            </div>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="container">
+            <canvas id="board2" width="292" height="393"></canvas>
+            <div class="d-grid gap-2 col-4 mx-auto">
+              <input type="button" class="btn btn-primary" value="clear2" id="clear2">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 最後の質問　ここだけValidationを入れる -->
+      <h1>《該当するものにチェックを入れてください》</h1>
+      <div class="card ">
+        <div class="card-body">
+          <h5 class="card-title">肩こりや腰痛はありますか？</h5>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input class="form-check-input" type="radio" id="Q8" name="Q8" value="Yes" required>Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input class="form-check-input" type="radio" id="Q8" name="Q8" value="No" required>No</label>
+          </div>
+
+          <h5 class="card-title">肩こりのケアをされたことはありますか?</h5>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input class="form-check-input" type="radio" id="Q9" name="Q9" value="Yes" required>Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input class="form-check-input" type="radio" id="Q9" name="Q9" value="No" required>No</label>
+          </div>
+
+
+          <h5 class="card-title">ご帰宅のご希望時間はございますか？</h5>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input class="form-check-input" type="radio" id="Q10" name="Q10" value="特になし" required>特になし</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input class="form-check-input" type="radio" id="Q10" name="Q10" value="なるべく早め" required>なるべく早め</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input class="form-check-input" type="radio" id="Q10" name="Q10" value="その他" required>その他 </label>
+          </div>
+            <div class="input-group">
+              <input type="text" class="form-control" id ="Q10_H" name="Q10_H">
+              <span class="input-group-text">時</span>
+              <input type="text" class="form-control" id ="Q10_M" name="Q10_M">
+              <span class="input-group-text">分までには出たい</span>
+            </div>
+          </div>
+          <h5 class="card-title">本日最後にお召し上がりになられたもはなんですか？（本日ご手術をご希望される方のみ）</h5>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="input-group">
+                <span class="input-group-text">食事</span>
+                <input type="text" class="form-control" id ="Q11_meal" name="Q11_meal" >
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="input-group">
+                <span class="input-group-text">時間</span>
+                <input type="text" class="form-control" id ="Q11_meal_H">
+                <span class="input-group-text">：</span> 
+                <input type="text" class="form-control" id ="Q11_meal_M">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="input-group">
+                <span class="input-group-text">水分</span>
+                <input type="text" class="form-control" id ="Q11_water">
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="input-group">
+                <span class="input-group-text">時間</span>
+                <input type="text" class="form-control" id ="Q11_water_H">
+                <span class="input-group-text">：</span>
+                <input type="text" class="form-control" id ="Q11_water_M">
+              </div>
+            </div>
+          </div>
+          <h5 class="card-title">今までに授乳をされたことはございますか?（ バストのご相談をされる方のみ ）</h5>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input class="form-check-input" type="radio" id="Q12" name="Q12" value="Yes" required>あり</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input class="form-check-input" type="radio" id="Q12" name="Q12" value="No" required>なし</label>
+          </div>
+        </div>
+      </div>
+      <div class="d-grid gap-2 col-2 mx-auto">
+        <input type="submit" class="btn btn-primary " value="送信する">
+      </div>
     </form>
   </div>
 
@@ -90,5 +261,7 @@
   <script type="text/javascript" src="/js/form.js"></script>
   <!-- Canvas用javascript -->
   <script type="text/javascript" src="/js/canvas.js"></script>
+    <!-- submit用javascript -->
+    <script type="text/javascript" src="/js/submit.js"></script>
 </body>
 </html>
