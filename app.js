@@ -1,19 +1,25 @@
 const express = require("express");
 const app = express();
 var fs = require("fs");
+var bodyParser = require("body-parser");
 
 /* public file を使えるように */
 app.use(express.static("public"));
 /* formからデータを取ってこれるように */
-app.use(express.urlencoded({ extended: false }));
+/* app.use(express.urlencoded({ extended: false, limit: "50mb" })); */
+app.use(express.json({ extended: true, limit: "10mb" }));
 
 app.get("/", (req, res) => {
   res.render("top.ejs");
 });
+app.get("/confirm", (req, res) => {
+  res.render("confirm.ejs");
+});
 
 app.post("/submit_result", (req, res) => {
-  console.log("受信完了完了");
-  file_name = "csvData/data_" + req.body.name + ".csv";
+  file_name = "csvData/data_" + ".csv";
+  img1_file_name = "imgData1/data_" + ".png";
+  img2_file_name = "imgData2/data_" + ".png";
   let data = "";
   let i = 0;
 
@@ -29,14 +35,27 @@ app.post("/submit_result", (req, res) => {
       data += "\n";
     }
   }
-  console.log(data);
+  /* 画像保存 */
+
+  var img1 = req.body.data1.replace(/^data:image\/png;base64,/, "");
+  var img2 = req.body.data2.replace(/^data:image\/png;base64,/, "");
+  //image1出力処理
+  fs.writeFile(img1_file_name, img1, "base64", (err, data) => {
+    if (err) console.log(err);
+    else console.log("img1 write end");
+  });
+  //image1出力処理
+  fs.writeFile(img2_file_name, img2, "base64", (err, data) => {
+    if (err) console.log(err);
+    else console.log("img2 write end");
+  });
   /* CSV出力処理 */
   fs.writeFile(file_name, data, (err, data) => {
     if (err) console.log(err);
-    else console.log("write end");
+    else console.log("csv write end");
   });
-
-  res.render("confirm.ejs", { data: req.body });
+  console.log("rend");
+  res.render("confirm.ejs");
 });
 
 /* ポート3000を開放 */

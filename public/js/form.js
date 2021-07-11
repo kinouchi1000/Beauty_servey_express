@@ -12,12 +12,40 @@
     form.addEventListener(
       "submit",
       function (event) {
-        //バリデーションエラーが無いか確認
         if (!form.checkValidity()) {
           event.preventDefault();
           event.stopPropagation();
+        } else {
+          /* formデータをjsonに変換 */
+          var data = $("form").serializeArray(); // ①form to json
+          data = parseJson(data); // ②json to 欲しい形
+
+          /* canvasのデータを付加 */
+          const board1 = document.querySelector("#board1");
+          const board2 = document.querySelector("#board2");
+          const canvas1 = board1.toDataURL("image/png");
+          const canvas2 = board2.toDataURL("image/png");
+
+          data["data1"] = canvas1;
+          data["data2"] = canvas2;
+
+          // ③送信
+          $.ajax({
+            type: "POST",
+            url: "/submit_result",
+            dataType: "text",
+            contentType: "application/json",
+            scriptCharset: "utf-8",
+            data: JSON.stringify(data),
+          })
+            .done(function (res) {
+              location.href = "/confirm";
+            })
+            .fail(function (err) {
+              console.log(err);
+            });
         }
-        //form にwas-validatedクラスを付加
+
         form.classList.add("was-validated");
       },
       false
@@ -25,9 +53,11 @@
   });
 })();
 
-// canvasを画像で保存
-/* $("#download").click(function(){
-  canvas = document.getElementById('canvas');
-  var base64 = canvas.toDataURL("image/jpeg");
-  document.getElementById("download").href = base64;
-}); */
+// ②変換関数：json to 欲しい形
+const parseJson = function (data) {
+  var returnJson = {};
+  for (idx = 0; idx < data.length; idx++) {
+    returnJson[data[idx].name] = data[idx].value;
+  }
+  return returnJson;
+};
