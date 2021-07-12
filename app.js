@@ -27,7 +27,9 @@ app.post("/submit_result", (req, res) => {
     /* text，ラジオボタン入力 */
     if (typeof input == "string") {
       if (req.body[input] != "") {
-        data += req.body[input] + "\n";
+        if (!(input == "data1" || input == "data2")) {
+          data += req.body[input] + "\n";
+        }
       }
       /* 選択 */
     } else {
