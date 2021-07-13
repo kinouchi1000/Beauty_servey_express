@@ -17,9 +17,9 @@ app.get("/confirm", (req, res) => {
 });
 
 app.post("/submit_result", (req, res) => {
-  file_name = "csvData/data_" + ".csv";
-  img1_file_name = "imgData1/data_" + ".png";
-  img2_file_name = "imgData2/data_" + ".png";
+  file_name = "csvData/data_" + req.body.ID + ".csv";
+  img1_file_name = "imgData1/data_" + req.body.ID + ".png";
+  img2_file_name = "imgData2/data_" + req.body.ID + ".png";
   let data = "";
   let i = 0;
 
@@ -27,7 +27,7 @@ app.post("/submit_result", (req, res) => {
     /* text，ラジオボタン入力 */
     if (typeof input == "string") {
       if (req.body[input] != "") {
-        if (!(input == "data1" || input == "data2")) {
+        if (!(input == "data1" || input == "data2" || input == "ID")) {
           data += req.body[input] + "\n";
         }
       }
