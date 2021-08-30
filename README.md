@@ -13,7 +13,7 @@ https://qiita.com/sefoo0104/items/0653c935ea4a4db9dc2b
 
 # 実行方法
 ```bash
-node start
+yarn start
 ```
 
 # 保存データ場所
