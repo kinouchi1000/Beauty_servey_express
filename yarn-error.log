@@ -1,0 +1,51 @@
+Arguments: 
+  /Users/kinouchitakahiro/.nodebrew/node/v16.8.0/bin/node /Users/kinouchitakahiro/.nodebrew/current/bin/yarn start
+
+PATH: 
+  /Users/kinouchitakahiro/.nodebrew/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/kinouchitakahiro/.nodebrew/current/bin
+
+Yarn version: 
+  1.22.11
+
+Node version: 
+  16.8.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/kinouchitakahiro/package.json: Unexpected string in JSON at position 51
+      at JSON.parse (<anonymous>)
+      at /Users/kinouchitakahiro/.nodebrew/node/v16.8.0/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/Users/kinouchitakahiro/.nodebrew/node/v16.8.0/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /Users/kinouchitakahiro/.nodebrew/node/v16.8.0/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "beauty_servey_express",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node app.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "UNLICENSED",
+    "dependencies": {
+      "axios": "^0.21.1",
+      "body-parser": "^1.19.0",
+      "ejs": "^3.1.6",
+      "express": "^4.17.1",
+      "nodemon": "^2.0.12",
+      "yarn": "^1.22.11"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

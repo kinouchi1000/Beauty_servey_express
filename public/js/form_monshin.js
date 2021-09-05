@@ -152,33 +152,12 @@ function MNChange() {
           event.preventDefault();
           event.stopPropagation();
         } else {
-          /* formデータをjsonに変換 */
-          var data = $("form").serializeArray(); // ①form to json
-          data = parseJson(data); // ②json to 欲しい形
-
-          console.log(data)
- 
-          // ③送信
-          $.ajax({
-            type: "POST",
-            url: "/submit_monshin",
-            dataType: "text",
-            contentType: "application/json",
-            scriptCharset: "utf-8",
-            data: JSON.stringify(data),
-          })
-            .done(function (res) {  
-              location.href = "/beautySearch";
-            })
-            .fail(function (err) {
-              console.log(err);
-            }); 
-            //ajaxの廃止
-            // form.method = "post";
-            // form.action = "/submit_monshin";
-            // console.log(form)
-            // document.body.append(data);
-            // form.submit();
+            //post
+            form.method = "post";
+            form.action = "/submit_monshin";
+            console.log(form)
+            document.body.append(data);
+            form.submit();
         }
         form.classList.add("was-validated");
       },
@@ -187,11 +166,3 @@ function MNChange() {
   });
 })();
 
-// ②変換関数：json to 欲しい形
-const parseJson = function (data) {
-  var returnJson = {};
-  for (idx = 0; idx < data.length; idx++) {
-    returnJson[data[idx].name] = data[idx].value;
-  }
-  return returnJson;
-};

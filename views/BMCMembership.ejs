@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>BMC入会申込書</title>
+  <link rel="stylesheet" href='css/style.css'>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <h1>BMC入会申込書</h1>
+  <div class="container">
+    <form class="needs-validation" action="/submit_result" method="post" name="BMC" novalidate>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="true" id="agreement" required>
+        <label class="form-check-label" for="agreement">
+          BMC会員制度規約(別紙)に同意し、入会手数料として500円(税抜)を添えて入会を申し込みます。
+        </label>
+        <div class="invalid-feedback">
+          BMC会員制度規約に同意してください。
+        </div>
+        <p>※太枠内にご記入をお願いします。●箇所は必ずご記入ください。</p>
+      </div>
+      <!-- 個人情報入力 -->
+      <div class="card mb-3 gray-back">
+        <div class="container">
+          <div class="row">
+            <!-- 名前 -->
+            <div class="col-md-6 mb-3">
+              <label for="name" class="form-label">お名前</label>
+              <input type="text" class="form-control" id="name" name="name" value="" required>
+              <div class="invalid-feedback">
+                お名前を入力してください．
+              </div>
+            </div>
+            <!-- ふりがな -->
+            <div class="col-md-6 mb-3">
+              <label for="hurinana" class="form-label">ふりがな</label>
+              <input type="text" class="form-control" id="hurigana" name="hurigana" value=""
+                required>
+              <div class="invalid-feedback">
+                ふりがなを入力してください．
+              </div>
+            </div>
+            <!-- 生年月日 -->
+            <div class="col-md-4 mb-3">
+              <label for="birthDate" class="form-label">生年月日</label>
+              <input type="date" class="form-control" id="birthDate" name="birthDate" value=""
+                required>
+              <div class="invalid-feedback">
+                誕生日を入力してください．
+              </div>
+            </div>
+            <!-- 年齢 -->
+            <div class="col-md-4 mb-3">
+              <label for="age" class="form-label">年齢</label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" name="age" value="" aria-describedby="age"
+                  required>
+                <span class="input-group-text" id="age">歳</span>
+                <div class="invalid-feedback">
+                  年齢を入力してください．
+                </div>
+              </div>
+            </div>
+            <!-- 性別 -->
+            <div class="col-md-2 mb-3">
+              <p>性別</p>
+              <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" id="sex" name="sex" value="男" required>
+                <label class="form-check-label" for="sex">男</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" id="sex" name="sex" value="女" required>
+                <label class="form-check-label" for="sex">女</label>
+                <!-- 要修繕############## -->
+                <!-- <div class="invalid-feedback">未選択</div> -->
+              </div>
+            </div>
+            <!-- 住所 -->
+            <div class="col-md-7 mb-3">
+              <p>住所</p>
+              <div class="input-group has-validation" style="width:300px;">
+                <span class="input-group-text" id="zip">〒 (数字7桁)</span>
+                <input type="text" maxlength="7" class="form-control" name="zip11"
+                  placeholder='0123456' aria-describedby="zip11"
+                  onKeyUp="AjaxZip3.zip2addr(this,'','addr11','addr11');" required>
+                <div class="invalid-feedback">
+                  郵便番号を入力してください．
+                </div>
+              </div>
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="addr11">自宅</span>
+                <input type="text" class="form-control" name="addr11" size="60"
+                  aria-describedby="addr11" required>
+                <div class="invalid-feedback">
+                  住所を入力してください．
+                </div>
+              </div>
+            </div>
+            <!-- 電話番号 form-checkでいけるんじゃね？-->
+            <div class="col-md-5 mb-3">
+              <p>電話番号</p>
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="homeTel">
+                  自宅
+                  <input type="checkbox" name="homeTelFlg" onclick="HNChange()">
+                </span>
+                <input type="tel" class="form-control" name="homeNo" placeholder='000-0000-0000'
+                  aria-describedby="homeNo" required disabled>
+                <div class="invalid-feedback">
+                  電話番号を入力してください．
+                </div>
+              </div>
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="mobileTel">
+                  携帯
+                  <input type="checkbox" name="mobileTelFlg" onclick="MNChange()">
+                </span>
+                <input type="tel" class="form-control" name="mobileNo" placeholder='000-0000-0000'
+                  aria-describedby="mobileNo" required disabled>
+                <div class="invalid-feedback">
+                  電話番号を入力してください．
+                </div>
+              </div>
+            </div>
+            <div class="col-auto md-3">
+              <label for="job" class="form-label">ご職業</label>
+              <select type="form-select" class="form-control" id="job" name="job" value="" required>
+                <option selected disabled value="">ご職業を選択してください</option>
+                <option value="学生">学生</option>
+                <option value="会社員">会社員</option>
+                <option value="会社役員">会社役員</option>
+                <option value="医師">医師</option>
+                <option value="看護師">看護師</option>
+                <option value="エステティシャン">エステティシャン</option>
+                <option value="接客業">接客業</option>
+                <option value="自営業">自営業</option>
+                <option value="アルバイト">アルバイト</option>
+                <option value="フリーター">フリーター</option>
+                <option value="主婦">主婦</option>
+                <option value="無職">無職</option>
+                <option value="その他">その他</option>
+                <div class="invalid-feedback">
+                  ご職業を選択してください。
+                </div>
+              </select>
+            </div>
+            <div class="col-auto mb-3" id="job_other_item">
+              <label for="job_other" class="form-label">ご職業の詳細</label>
+              <input type="text" class="form-control" id="job_other" name="job_other" value=""
+                required disabled>
+              <div class="invalid-feedback">
+                その他を選んだ場合は詳細を記載してください。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- お得な情報 -->
+      <h3>お得な情報</h3>
+      <div class="card mb-3 gray-back">
+        <div class="container">
+          <table class="table">
+            <tr>
+              <th scope="row">会員様特典<br>郵送or専用メール配信</th>
+              <td>
+                <input type="checkbox" name="membership" id="membership" value="会員様特典希望">
+                <label class="form-label" for="membership">希望する</label><br>
+                <p class="annotation">
+                  *会員様限定スペシャルチケットを郵送またはメールにてお送りいたします。<br>
+                  ＜例＞　最大5万円金券チケット<br>
+                  ※内容は会員様のランクによって異なります。
+                </p>
+              </td>
+              <td><u>年一回</u>を目安に配信</td>
+            </tr>
+            <tr>
+              <th scope="row">LINEお友達特典<br> ※歯科除く</th>
+              <td>
+                <input type="checkbox" name="LINE" id="LINE" value="LINEお友達特典希望">
+                <label class="form-label" for="LINE">希望する</label><br>
+                <p class="annotation">
+                  *登録特典1,000円クーポンプレゼント<br>
+                  不定期に豪華特典あり<br>
+                  ＜例＞＞LINE限定お友だち全員10,000ptプレゼント、LINE限定割引チケット
+                </p>
+              </td>
+              <td>不定期</td>
+            </tr>
+            <tr>
+              <th scope="row">メールマガジン配信</th>
+              <td>
+                <input type="checkbox" name="mailMagazine" id="mailMagazine" value="メールマガジン配信希望">
+                <label class="form-label" for="mailMagazine">希望する</label>
+              </td>
+              <td><u>月1～2回</u>の配信</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="d-grid gap-2 mb-3 col-2 mx-auto">
+        <input type="submit" class="btn btn-primary " value="送信する">
+      </div>
+    </form>
+  </div>
+
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+  <!-- 住所自動入力用 -->
+  <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+  <!-- javascript -->
+  <script type="text/javascript" src="/js/form_BMCMembership.js"></script>
+</body>
+</html>
