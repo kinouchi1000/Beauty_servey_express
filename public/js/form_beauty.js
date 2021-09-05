@@ -2,7 +2,7 @@
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
-  "use strict";
+  "use strict";//厳格モード
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   var forms = document.querySelectorAll(".needs-validation");
@@ -32,7 +32,7 @@
           // ③送信
           $.ajax({
             type: "POST",
-            url: "/submit_result",
+            url: "/submit_beauty",
             dataType: "text",
             contentType: "application/json",
             scriptCharset: "utf-8",
@@ -45,7 +45,6 @@
               console.log(err);
             });
         }
-
         form.classList.add("was-validated");
       },
       false
