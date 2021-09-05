@@ -1,3 +1,29 @@
+/* ベース 
+===================================*/
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Segoe UI,
+    Hiragino Kaku Gothic ProN, Hiragino Sans, ヒラギノ角ゴ ProN W3, Arial,
+    メイリオ, Meiryo, sans-serif;
+}
+header {
+  background-color: azure;
+}
+
+/* レイアウト
+================================== */
+
+.ly_form {
+  max-width: 1200px;
+}
+
+/* モジュール
+======================== */
+.main-tytle {
+  font-size: xx-large;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: auto;
+}
 div.gray-back {
   padding: 20px 0;
   background-color: rgb(235, 232, 232);
@@ -13,8 +39,8 @@ header {
   background-color: gray;
 }
 h1 {
-  width:100%;
-  padding:15px 0;
-  margin:0 auto;
+  width: 100%;
+  padding: 15px 0;
+  margin: 0 auto;
   text-align: center;
 }
