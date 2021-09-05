@@ -26,12 +26,12 @@ app.get("/BMCMembership", (req, res) => {
 
 // 美容アンケート
 app.get("/beautySearch", (req, res) => {
-  console.log("美容アンケート表示")
+  console.log("美容アンケート表示");
   res.render("beautySearch");
 });
 // 確認画面
 app.get("/confirm", (req, res) => {
-  console.log("確認画面表示")
+  console.log("確認画面表示");
   res.render("confirm");
 });
 
@@ -44,21 +44,17 @@ const writeFile = (file_name, data,option=null)=>{
     else console.log(file_name+" write end");
   });
 };
-//画像保存
-// const saveImg = (filename,img)=>{
-//   fs.writeFile(filename, img, "base64", (err, data) => {
-//     if (err) console.log(err);
-//     else console.log("img2 write end");
-//   });
-// }
+
 //CSVに変換
-const decodeCSV = (body)=>{
+const decodeCSV = (body, ignore=[])=>{
   data = ""
   for (const input in body) {
     /* text，ラジオボタン入力 */
     if (typeof input == "string") {
       if (body[input] != "") {
-        data += body[input] + "\n";
+        if(ignore.includes(input)==false){
+          data += body[input] + "\n";
+        }
       }
       /* 選択 */
     } else {
@@ -95,44 +91,17 @@ app.post("/submit_beautySearch", (req, res) => {
   file_name = "data/CSVBeauty/data_" + req.body.ID + ".csv";
   img1_file_name = "data/imgData1/data_" + req.body.ID + ".png";
   img2_file_name = "data/imgData2/data_" + req.body.ID + ".png";
-  let data = "";
 
-  for (const input in req.body) {
-    /* text，ラジオボタン入力 */
-    if (typeof input == "string") {
-      if (req.body[input] != "") {
-        if (!(input == "data1" || input == "data2" || input == "ID")) {
-          data += req.body[input] + "\n";
-        }
-      }
-      /* 選択 */
-    } else {
-      data += input.join(",");
-      data += "\n";
-    }
-  }
+  const data = decodeCSV(req.body,["data1","data2","ID"]);
 
-  /* 画像保存 */
   var img1 = req.body.data1.replace(/^data:image\/png;base64,/, "");
   var img2 = req.body.data2.replace(/^data:image\/png;base64,/, "");
 
-  //image1出力処理
+  //各データ出力処理
   writeFile(img1_file_name, img1,"base64");
-  // fs.writeFile(img1_file_name, img1, "base64", (err, data) => {
-  //   if (err) console.log(err);
-  //   else console.log("img1 write end");
-  // });
-
-  //image2出力処理
   writeFile(img2_file_name, img2,"base64");
-  // fs.writeFile(img2_file_name, img2, "base64", (err, data) => {
-  //   if (err) console.log(err);
-  //   else console.log("img2 write end");
-  // });
-
-  /* CSV出力処理 */
   writeFile(file_name,data);
-  //レンダリング
+
   res.render("confirm",{data: req.body});
 });
 
