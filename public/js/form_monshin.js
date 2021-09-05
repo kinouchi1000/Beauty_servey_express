@@ -155,8 +155,6 @@ function MNChange() {
             //post
             form.method = "post";
             form.action = "/submit_monshin";
-            console.log(form)
-            document.body.append(data);
             form.submit();
         }
         form.classList.add("was-validated");
