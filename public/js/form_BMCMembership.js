@@ -15,6 +15,22 @@ job_select.onchange = function () {
   }
 };
 
+//電話番号チェックハンドラ
+function HNChange() {
+  if (document.BMC.homeTelFlg.checked) {
+    document.BMC.homeNo.removeAttribute("disabled");
+  } else {
+    document.BMC.homeNo.setAttribute("disabled", true);
+  }
+}
+function MNChange() {
+  if (document.BMC.mobileTelFlg.checked) {
+    document.BMC.mobileNo.removeAttribute("disabled");
+  } else {
+    document.BMC.mobileNo.setAttribute("disabled", true);
+  }
+}
+
 /* Validation用 */
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields

@@ -32,7 +32,7 @@
             <!-- 名前 -->
             <div class="col-md-6 mb-3">
               <label for="name" class="form-label">お名前</label>
-              <input type="text" class="form-control" id="name" name="name" value="" required>
+              <input type="text" class="form-control" id="name" name="name" value="<%=data.name%>" required>
               <div class="invalid-feedback">
                 お名前を入力してください．
               </div>
@@ -40,7 +40,7 @@
             <!-- ふりがな -->
             <div class="col-md-6 mb-3">
               <label for="hurinana" class="form-label">ふりがな</label>
-              <input type="text" class="form-control" id="hurigana" name="hurigana" value=""
+              <input type="text" class="form-control" id="hurigana" name="hurigana" value="<%=data.hurigana%>"
                 required>
               <div class="invalid-feedback">
                 ふりがなを入力してください．
@@ -49,7 +49,7 @@
             <!-- 生年月日 -->
             <div class="col-md-4 mb-3">
               <label for="birthDate" class="form-label">生年月日</label>
-              <input type="date" class="form-control" id="birthDate" name="birthDate" value=""
+              <input type="date" class="form-control" id="birthDate" name="birthDate" value="<%=data.birthDate%>"
                 required>
               <div class="invalid-feedback">
                 誕生日を入力してください．
@@ -59,7 +59,7 @@
             <div class="col-md-4 mb-3">
               <label for="age" class="form-label">年齢</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" name="age" value="" aria-describedby="age"
+                <input type="text" class="form-control" name="age" value="<%=data.age%>" aria-describedby="age"
                   required>
                 <span class="input-group-text" id="age">歳</span>
                 <div class="invalid-feedback">
@@ -68,14 +68,17 @@
               </div>
             </div>
             <!-- 性別 -->
+            <% var manChecked = "";%>
+            <% var womanChecked = "";%>
+            <% if(data.sex=="男"){ manChecked = "checked";} else if(data.sex=="女"){womanChecked = "checked";}%>
             <div class="col-md-2 mb-3">
               <p>性別</p>
               <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" id="sex" name="sex" value="男" required>
+                <input type="radio" class="form-check-input" id="sex" name="sex" value="男" <%=manChecked%> required>
                 <label class="form-check-label" for="sex">男</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" id="sex" name="sex" value="女" required>
+                <input type="radio" class="form-check-input" id="sex" name="sex" value="女" <%=womanChecked%> required>
                 <label class="form-check-label" for="sex">女</label>
                 <!-- 要修繕############## -->
                 <!-- <div class="invalid-feedback">未選択</div> -->
@@ -87,7 +90,7 @@
               <div class="input-group has-validation" style="width:300px;">
                 <span class="input-group-text" id="zip">〒 (数字7桁)</span>
                 <input type="text" maxlength="7" class="form-control" name="zip11"
-                  placeholder='0123456' aria-describedby="zip11"
+                  placeholder='0123456' aria-describedby="zip11" value = "<%=data.zip11%>"
                   onKeyUp="AjaxZip3.zip2addr(this,'','addr11','addr11');" required>
                 <div class="invalid-feedback">
                   郵便番号を入力してください．
@@ -96,7 +99,7 @@
               <div class="input-group has-validation">
                 <span class="input-group-text" id="addr11">自宅</span>
                 <input type="text" class="form-control" name="addr11" size="60"
-                  aria-describedby="addr11" required>
+                  value="<%=data.addr11%>" aria-describedby="addr11" required>
                 <div class="invalid-feedback">
                   住所を入力してください．
                 </div>
@@ -104,14 +107,20 @@
             </div>
             <!-- 電話番号 form-checkでいけるんじゃね？-->
             <div class="col-md-5 mb-3">
+              <%var homeNo = ""; var mobileNo = "";%>
+              <%var homeTelChecked = "";var mobileTelChecked = "";%>
+              <%var homeTelDisabled = "disabled";var mobileTelDisabled = "disabled";%>
+              <% console.log(data.homeNo);console.log(data.mobileNo); %> 
+              <%if(!(data.homeNo === undefined))   {homeNo = data.homeNo; homeTelChecked="checked";homeTelDisabled=""}%>
+              <%if(!(data.mobileNo === undefined)) {mobileNo = data.mobileNo; mobileTelChecked="checked";mobileTelDisabled=""}%>
               <p>電話番号</p>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="homeTel">
                   自宅
-                  <input type="checkbox" name="homeTelFlg" onclick="HNChange()">
+                  <input type="checkbox" name="homeTelFlg" onclick="HNChange()" <%=homeTelChecked%>>
                 </span>
                 <input type="tel" class="form-control" name="homeNo" placeholder='000-0000-0000'
-                  aria-describedby="homeNo" required disabled>
+                  value="<%=homeNo%>" aria-describedby="homeNo" required <%= homeTelDisabled %> >
                 <div class="invalid-feedback">
                   電話番号を入力してください．
                 </div>
@@ -119,10 +128,10 @@
               <div class="input-group has-validation">
                 <span class="input-group-text" id="mobileTel">
                   携帯
-                  <input type="checkbox" name="mobileTelFlg" onclick="MNChange()">
+                  <input type="checkbox" name="mobileTelFlg" onclick="MNChange()" <%=mobileTelChecked%>>
                 </span>
                 <input type="tel" class="form-control" name="mobileNo" placeholder='000-0000-0000'
-                  aria-describedby="mobileNo" required disabled>
+                  value="<%=mobileNo%>" aria-describedby="mobileNo" required <%= mobileTelDisabled %> >
                 <div class="invalid-feedback">
                   電話番号を入力してください．
                 </div>
