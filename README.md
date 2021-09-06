@@ -34,8 +34,19 @@ npm install -g yarn
 yarn start
 ```
 
-# 保存データ場所
-
-- csvData : フォームの結果
-- imgData1 : アゴ周りのイラスト
-- imgData2 : 体全体のイラスト
+# 階層構造
+※　data/以下がない場合、作成してください。
+```
+%HOME% 
+   ├ data
+   │  ├ CSVBeauty     // 美容アンケート
+   │  ├ CSVMonshin    // 問診票
+   │  ├ CSVMembership // BMCMembership
+   │  ├ imgData1      // 美容アンケート画像データ1
+   │  └ imgData2      // 美容アンケート画像データ2
+   ├ node_module
+   ├ public
+   ├ views
+   ├ app.js
+   ...
+```
