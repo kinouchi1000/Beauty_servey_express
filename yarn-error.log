@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Users/kinouchitakahiro/package.json: Unexpected string in JSON at position 51
+  SyntaxError: /Users/kinouchitakahiro/Documents/Beauty_servey_express/package.json: Unexpected token } in JSON at position 445
       at JSON.parse (<anonymous>)
       at /Users/kinouchitakahiro/.nodebrew/node/v16.8.0/lib/node_modules/yarn/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -41,7 +41,8 @@ npm manifest:
       "express": "^4.17.1",
       "nodemon": "^2.0.12",
       "yarn": "^1.22.11"
-    }
+    },
+  
   }
 
 yarn manifest: 

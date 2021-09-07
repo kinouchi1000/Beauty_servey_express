@@ -11,20 +11,21 @@
     crossorigin="anonymous">
 </head>
 <body>
-  <h1>問診票・診療申込書</h1>
-  <div class="container">
-
+  <header class="ly_header">
+    <h1 class="main-tytle">問診票・診療申込書</h1>
+  </header>
+  <div class="container mb-3">
     <!-- お客様情報入力フォーム -->
     <form class="needs-validation" name="monshin" novalidate>
-      <h3>お客様情報</h3>
-      <div class="card mb-3" style="padding:20px 0; background-color: rgb(235, 232, 232);">
+      <div class="section">お客様情報</div>
+      <div class="card mb-3 shadow-sm" style="padding:20px 0; background-color: rgb(235, 232, 232);">
         <div class="container">
           <div class="row">
             <!-- 名前 -->
             <div class="col-md-6 mb-3">
               <label for="name" class="form-label">お名前</label>
               <input type="text" class="form-control" id="name" name="name" value="" required>
-              <div class="invalid-feedback">ß
+              <div class="invalid-feedback">
                 お名前を入力してください．
               </div>
             </div>
@@ -54,11 +55,11 @@
             <div class="col-md-4 mb-3">
               <label for="age" class="form-label">年齢</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" name="age" value="" aria-describedby="age"
+                <input type="number" min="1" max="150" class="form-control no-spin" name="age" value="" aria-describedby="age"
                   required>
                 <span class="input-group-text" id="age">歳</span>
                 <div class="invalid-feedback">
-                  年齢を入力してください．
+                  数値で年齢を入力してください．
                 </div>
               </div>
             </div>
@@ -83,11 +84,11 @@
               <p>住所</p>
               <div class="input-group has-validation" style="width:300px;">
                 <span class="input-group-text" id="zip">〒 (数字7桁)</span>
-                <input type="text" maxlength="7" class="form-control" name="zip11"
+                <input type="number" maxlength="7" class="form-control no-spin" name="zip11"
                   placeholder='0123456' aria-describedby="zip11"
                   onKeyUp="AjaxZip3.zip2addr(this,'','addr11','addr11');" required>
                 <div class="invalid-feedback">
-                  郵便番号を入力してください．
+                  数値7桁で郵便番号を入力してください．
                 </div>
               </div>
               <div class="input-group has-validation">
@@ -108,10 +109,11 @@
                   自宅
                   <input type="checkbox" name="homeTelFlg" onclick="HNChange()">
                 </span>
-                <input type="tel" class="form-control" name="homeNo" placeholder='000-0000-0000'
+                <input type="tel" class="form-control" pattern="[0-9]{4}-[0-9]{2}-[0-9]{4}" 
+                  name="homeNo" placeholder='0000-00-0000'
                   aria-describedby="homeNo" required disabled>
                 <div class="invalid-feedback">
-                  電話番号を入力してください．
+                  0000-00-0000の形で電話番号を入力してください．
                 </div>
               </div>
               <div class="input-group has-validation">
@@ -119,10 +121,11 @@
                   携帯
                   <input type="checkbox" name="mobileTelFlg" onclick="MNChange()">
                 </span>
-                <input type="tel" class="form-control" name="mobileNo" placeholder='000-0000-0000'
+                <input type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" 
+                  name="mobileNo" placeholder='000-0000-0000'
                   aria-describedby="mobileNo" required disabled>
                 <div class="invalid-feedback">
-                  電話番号を入力してください．
+                  000-0000-0000の形で電話番号を入力してください．
                 </div>
               </div>
             </div>
@@ -130,12 +133,14 @@
         </div>
       </div>
 
+      <div class="section">アンケート</div>
+
       <p>この用紙は、安全に治療を受けて頂くための大切な資料となります。</p>
       <p>かかったことのある病気や現在使用中のお薬についてご記入ください。プライバシーは厳守しますので、正確にご記入ください。また、安全に治療を受けていただくため、問診票のご記入は１年ごとにお願いしております。１年以内でも変化があった場合は、都度ご申告いただきますようお願いいたします。</p>
 
       <!-- boot strap -->
       <!-- Q1 -->
-      <div class="card mb-3">
+      <div class="card shadow-sm mb-3 ">
         <h5 class="card-header">
 					Q1 : 現在治療中の病気または過去に治療を受けた病気がありますか？
 					<label><input type="radio" name="Q1"  onclick="Q1Change()" value = "ない"/>ない</label>
@@ -301,7 +306,7 @@
       </div>
 
       <!-- Question 2 -->
-      <div class="card mb-3">
+      <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q2 : 最近使用したお薬あるいは現在使用中のお薬はありますか？
 					<label><input  type="radio" name="Q2" onclick="Q2Change();" value="ない"/>ない</label>
@@ -322,7 +327,7 @@
       </div>
 
       <!-- Question 3 -->
-      <div class="card mb-3">
+      <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q3 : 体に合わない（アレルギーのある）お薬や食べ物はありましたか？
 					<label><input type="radio" name="Q3" onclick="Q3Change();"  value="ない"/>ない</label>
@@ -348,7 +353,7 @@
 
 
       <!-- Question 4 -->
-      <div class="card mb-3">
+      <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q4 : 点滴をされて気分が悪くなったことがありますか？
 					<label><input type="radio" name="Q4" onclick="Q4Change();"  value="ない"/>ない</label>
@@ -374,7 +379,7 @@
 
 
       <!-- Question 5 -->
-      <div class="card mb-3">
+      <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q5 : 「病気・ケガの手術」や「美容外科の手術」を，受けたことがありますか？
 					<label><input type="radio" name="Q5" onclick="Q5Change();"  value="ない"/>ない</label>
@@ -401,7 +406,7 @@
 
 
       <!-- Question 6 -->
-      <div class="card mb-3">
+      <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q6 : 手術や出産時に輸血をしたことがありますか？
 					<label><input type="radio" name="Q6" onclick="Q6Change();"  value="ない"/>ない</label>
@@ -437,7 +442,7 @@
       </div>
 
       <!-- Question 7 -->
-      <div class="card mb-3">
+      <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q7 : アートメイクや入れ墨をしたことがありますか？
 					<label><input type="radio" name="Q7"onclick="Q7Change();"  value="ない"/>ない</label>
@@ -462,7 +467,7 @@
         </div>
       </div>
       <!-- Q8女性の方へ -->
-      <div class="card mb-3">
+      <div class="card shadow-sm mb-3">
         <h5 class="card-header">Q8 : 女性の方へ</h5>
         <div class="card-body">
           <table>
@@ -491,7 +496,7 @@
       </div>
       <!-- Q9 -->
       <p>該当する項目にチェックをつけてお答えください．</p>
-      <div class="card mb-3">
+      <div class="card shadow-sm mb-3">
         <h5 class="card-header"> カウンセリングを受けたい項目にチェックを付けてください</h5>
         <div class="card-body">
           <div class="row">
@@ -534,7 +539,7 @@
       </div>
 
       <!-- Q10-->
-      <div class="card mb-3">
+      <div class="card shadow-sm mb-3">
         <h5 class="card-header">本日治療を希望されますか？</h5>
         <div class="card-body">
           <div class="form-check">
@@ -560,10 +565,6 @@
       </div>
     </form>
   </div>
-
-
-
-
 
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

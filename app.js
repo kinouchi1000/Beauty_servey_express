@@ -1,6 +1,6 @@
+const writeFile = require('./tools/writeFile.js')
+const decodeCSV = require('./tools/decodeCSV.js')
 const express = require("express");
-var fs = require("fs");
-
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -37,34 +37,6 @@ app.get("/confirm", (req, res) => {
 
 ///////////////////CSV出力/////////////////////
 
-//CSVに保存
-const writeFile = (file_name, data,option=null)=>{
-  fs.writeFile(file_name, data, option, (err, data) => {
-    if (err) console.log(err);
-    else console.log(file_name+" write end");
-  });
-};
-
-//CSVに変換
-const decodeCSV = (body, ignore=[])=>{
-  data = ""
-  for (const input in body) {
-    /* text，ラジオボタン入力 */
-    if (typeof input == "string") {
-      if (body[input] != "") {
-        if(ignore.includes(input)==false){
-          data += body[input] + "\n";
-        }
-      }
-      /* 選択 */
-    } else {
-      data += input.join(",");
-      data += "\n";
-    }
-  }
-  return data;
-}
-
 //　問診票CSV変換
 app.post("/submit_monshin", (req, res) => {
 
@@ -88,9 +60,9 @@ app.post("/submit_BMCMembership", (req, res) => {
 // 美容アンケートCSV変換
 app.post("/submit_beautySearch", (req, res) => {
   
-  file_name = "data/CSVBeauty/data_" + req.body.ID + ".csv";
-  img1_file_name = "data/imgData1/data_" + req.body.ID + ".png";
-  img2_file_name = "data/imgData2/data_" + req.body.ID + ".png";
+  file_name = "data/CSVBeauty/data_" + req.body.name + ".csv";
+  img1_file_name = "data/imgData1/data_" + req.body.name + ".png";
+  img2_file_name = "data/imgData2/data_" + req.body.name + ".png";
 
   const data = decodeCSV(req.body,["data1","data2","ID"]);
 

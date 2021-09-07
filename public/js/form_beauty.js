@@ -15,6 +15,7 @@
         if (!form.checkValidity()) {
           event.preventDefault();
           event.stopPropagation();
+          alert("未入力か不適切な入力があります");
         } else {
 
           /* canvasのデータを付加 */
@@ -37,8 +38,7 @@
           data2.value = canvas2;
           form.appendChild(data1)
           form.appendChild(data2)
-
-          //document.body.appendChild(form);
+          
           form.submit();
         }
         form.classList.add("was-validated");

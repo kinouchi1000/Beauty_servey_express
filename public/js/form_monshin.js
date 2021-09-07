@@ -151,6 +151,7 @@ function MNChange() {
         if (!form.checkValidity()) {
           event.preventDefault();
           event.stopPropagation();
+          alert("未入力か不適切な入力があります");
         } else {
             //post
             form.method = "post";

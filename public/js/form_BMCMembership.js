@@ -48,6 +48,7 @@ function MNChange() {
         if (!form.checkValidity()) {
           event.preventDefault();
           event.stopPropagation();
+          alert("未入力か不適切な入力があります");
         }else{
             //ajaxの廃止
             form.method = "post";
