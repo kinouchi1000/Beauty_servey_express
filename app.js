@@ -1,5 +1,6 @@
-const writeFile = require('./tools/writeFile.js')
-const decodeCSV = require('./tools/decodeCSV.js')
+const writeFile = require('./tools/writeFile.js');
+const decodeCSV = require('./tools/decodeCSV.js');
+const makePDF = require('./tools/makePDF.js');
 const express = require("express");
 const app = express();
 
@@ -44,15 +45,16 @@ app.post("/submit_monshin", (req, res) => {
   let data = decodeCSV(req.body)
   writeFile(file_name,data);
   res.render("BMCMembership", { data: req.body });
-
+  
 });
 
 // BMC入会CSV変換
 app.post("/submit_BMCMembership", (req, res) => {
-
+  
   file_name = "data/CSVMembership/data_" + req.body.name + ".csv";
   let data = decodeCSV(req.body)
   writeFile(file_name,data);
+  makePDF(req.body);
   res.render("beautySearch", { data: req.body });
 
 });
