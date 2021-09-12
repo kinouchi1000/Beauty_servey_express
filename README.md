@@ -13,7 +13,7 @@
 - jquery
 - bootstrap
 
-# 環境構築
+## 環境構築
 
 下記の環境構築をしておく必要があります
 
@@ -22,11 +22,9 @@
 
 - yarn のインストール
 
-```
-npm install -g yarn
-```
-
-ß
+  ```
+  npm install -g yarn
+  ```
 
 # 実行方法
 
@@ -35,9 +33,11 @@ yarn start
 ```
 
 # 階層構造
-※　data/以下がない場合、作成してください。
+
+※　 data/以下がない場合、作成してください。
+
 ```
-%HOME% 
+%HOME%
    ├ data
    │  ├ CSVBeauty     // 美容アンケート
    │  ├ CSVMonshin    // 問診票
