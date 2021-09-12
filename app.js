@@ -7,12 +7,14 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(express.urlencoded({ limit:'50mb',extended: false }));
-//app.use(express.json({ extended: true, limit: "10mb" }));
+
+var customer_data =null
 
 // top
 app.get("/", (req, res)=>{
+  customer_data = null
   res.render("top.ejs");
-})
+});
 
 // 問診票
 app.get("/monshin", (req, res)=>{
@@ -22,18 +24,14 @@ app.get("/monshin", (req, res)=>{
 
 //BMC Members入会
 app.get("/BMCMembership", (req, res) => {
-  res.render("BMCMembership.ejs");
+  console.log("BMCアンケート表示");
+  res.render("BMCMembership.ejs",{data:customer_data});
 });
 
 // 美容アンケート
 app.get("/beautySearch", (req, res) => {
   console.log("美容アンケート表示");
-  res.render("beautySearch");
-});
-// 確認画面
-app.get("/confirm", (req, res) => {
-  console.log("確認画面表示");
-  res.render("confirm");
+  res.render("beautySearch",{data:customer_data});
 });
 
 ///////////////////CSV出力/////////////////////
@@ -44,6 +42,7 @@ app.post("/submit_monshin", (req, res) => {
   file_name = "data/CSVMonshin/data_" + req.body.name + ".csv";
   let data = decodeCSV(req.body)
   writeFile(file_name,data);
+  customer_data = req.body
   res.render("monshin_confirm", { data: req.body });
   
 });
