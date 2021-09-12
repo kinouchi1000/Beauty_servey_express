@@ -39,6 +39,12 @@ header {
   padding-top: 15px;
   margin: atuo;
 }
+.subsection{
+  font-size: large;
+  font-weight: 500;
+  padding-top: 15px;
+  margin: atuo;
+}
 div.gray-back {
   padding: 20px 0;
   background-color: rgb(235, 232, 232);

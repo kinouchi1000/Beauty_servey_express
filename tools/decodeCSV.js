@@ -1,4 +1,3 @@
-var fs = require("fs");
 //CSVに変換
 module.exports = (body, ignore=[])=>{
   data = ""

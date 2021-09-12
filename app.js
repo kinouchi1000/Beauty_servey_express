@@ -11,7 +11,7 @@ app.use(express.urlencoded({ limit:'50mb',extended: false }));
 
 // top
 app.get("/", (req, res)=>{
-  //res.render("monshin.ejs");
+  res.render("top.ejs");
 })
 
 // 問診票
@@ -44,7 +44,7 @@ app.post("/submit_monshin", (req, res) => {
   file_name = "data/CSVMonshin/data_" + req.body.name + ".csv";
   let data = decodeCSV(req.body)
   writeFile(file_name,data);
-  res.render("BMCMembership", { data: req.body });
+  res.render("monshin_confirm", { data: req.body });
   
 });
 
@@ -55,7 +55,7 @@ app.post("/submit_BMCMembership", (req, res) => {
   let data = decodeCSV(req.body)
   writeFile(file_name,data);
   makePDF(req.body);
-  res.render("beautySearch", { data: req.body });
+  res.render("BMCMembershp_confirm", { data: req.body });
 
 });
 
@@ -76,7 +76,7 @@ app.post("/submit_beautySearch", (req, res) => {
   writeFile(img2_file_name, img2,"base64");
   writeFile(file_name,data);
 
-  res.render("confirm",{data: req.body});
+  res.render("beautySearch_confirm",{data: req.body});
 });
 
 ///////////Port開放////////////

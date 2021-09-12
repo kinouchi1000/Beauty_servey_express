@@ -12,10 +12,289 @@
 </head>
 <body>
   <header class="ly_header">
-    <h1>送信完了</h1>
+    <h1 class='main-tytle'>問診票・診察申込書</h1>
   </header>
-  <h1><%=data.name%>様</h1>
-  <a href="/monshin">フォームに戻る</a>
+  <div class="container">
+    <div class="section">入力データを確認してください</div>
+    <div class="card mb-3">
+      <div class="card-header">お客様情報</div>
+      <div class="card-body">
+        <table class="table">
+          <tr>
+            <th scope="row">お名前</th>
+            <td><%-data.name%></td>
+          </tr>
+          <tr>
+            <th scope="row">ふりがな</th>
+            <td><%-data.hurigana%></td>
+          </tr>
+          <tr>
+            <th scope="row">生年月日</th>
+            <td><%-data.birthDate%></td>
+          </tr>
+          <tr>
+            <th scope="row">年齢</th>
+            <td><%-data.age%></td>
+          </tr>
+          <tr>
+            <th scope="row">性別</th>
+            <td><%-data.sex%></td>
+          </tr>
+          <tr>
+            <th scope="row">郵便番号</th>
+            <td><%-data.zip11%></td>
+          </tr>
+          <tr>
+            <th scope="row">自宅住所</th>
+            <td><%-data.addr11%></td>
+          </tr>
+          <%if(!(data.homeNo == undefined)){%>
+            <tr>
+              <th scope="row">自宅電話番号</th>
+              <td><%-data.homeNo%></td>
+            </tr>
+          <%}if(!(data.mobileNo == undefined)){%>
+            <tr>
+              <th scope="row">携帯電話番号</th>
+              <td><%-data.mobileNo%></td>
+            </tr>
+          <%}%>
+        </table>
+      </div>
+    </div>
+    <!-- Q1 -->
+    <div class="card mb-3">
+      <div class="card-header section">問診</div>
+      <div class="card-body">
+        <div class="subsection">現在治療中の病気または過去に治療を受けた病気がありますか？ : <%-data.Q1%></div>
+        <table class="table">
+          <%if(data.Q1=="ある"){%>
+            <tr>
+              <%if(data.Q101 != undefined){%>
+              <th scope="row">肩・腰の痛み</th>
+              <%var value = data.Q101;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q102 != undefined){%>
+              <th scope="row">生活習慣病</th>
+              <%var value = data.Q102;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q103 != undefined){%>
+              <th scope="row">心臓</th>
+              <%var value = data.Q103;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q104 != undefined){%>
+              <th scope="row">血管や血液</th>
+              <%var value = data.Q104;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q105 != undefined){%>
+              <th scope="row">脳</th>
+              <%var value = data.Q105;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q106 != undefined){%>
+              <th scope="row">肺</th>
+              <%var value = data.Q106;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q107 != undefined){%>
+              <th scope="row">消化管</th>
+              <%var value = data.Q107;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q108 != undefined){%>
+              <th scope="row">肝臓や腎臓</th>
+              <%var value = data.Q108;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q109 != undefined){%>
+              <th scope="row">心や神経</th>
+              <%var value = data.Q109;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q110 != undefined){%>
+              <th scope="row">ホルモン</th>
+              <%var value = data.Q110;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q111 != undefined){%>
+              <th scope="row">婦人科</th>
+              <%var value = data.Q111;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q112 != undefined){%>
+              <th scope="row">目</th>
+              <%var value = data.Q112;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q113 != undefined){%>
+              <th scope="row">骨</th>
+              <%var value = data.Q113;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q114 != undefined){%>
+              <th scope="row">免疫</th>
+              <%var value = data.Q114; var riumati = ""%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+
+              <td>
+                <%-value%><br>
+                <%if (value.match(/リウマチ/)){%>
+                  <div>リウマチの方の金製剤の服用歴：<%-data.riumatism%></div>
+                <%}%>
+              </td>
+
+            </tr>
+            <tr>
+              <%}if(data.Q115 != undefined){%>
+              <th scope="row">皮フ</th>
+              <%var value = data.Q115;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q116 != undefined){%>
+              <th scope="row">肌トラブル</th>
+              <%var value = data.Q116;%>
+              <%if(Array.isArray(value)){value = value.join(",");}%>
+              <td><%-value%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q117 != ""){%>
+              <th scope="row">その他</th>
+              <td><%-data.Q117%></td>
+            </tr>
+            <tr>
+              <%}if(data.Q118 != ""){%>
+              <th scope="row">治療中・治療期間・完治時期等</th>
+              <td><%-data.Q118%></td>
+              <%}%>
+            </tr>
+          <%}%>
+        </table>
+        <!-- Q2 -->
+        <div class="subsection">最近使用したお薬あるいは現在使用中のお薬はありますか？ : <%-data.Q2%></div>
+        <%if(data.Q2=="ある"){%>
+          <p>薬品名：<%-data.Q201%></p>
+        <%}%>
+
+        <!-- Q3 -->
+        <div class="subsection">体に合わない（アレルギーのある）お薬や食べ物はありましたか？ : <%-data.Q3%></div>
+        <%if(data.Q3=="ある"){%>
+          <p>薬品名：<%-data.Q301%></p>
+          <p>食品名：<%-data.Q302%></p>
+        <%}%>
+
+        <!-- Q4 -->
+        <div class="subsection">点滴をされて気分が悪くなったことがありますか？ : <%-data.Q4%></div>
+        <%if(data.Q4=="ある"){%>
+          <p>いつ頃：<%-data.Q401%></p>
+          <p>状況等：<%-data.Q402%></p>
+        <%}%>
+
+        <!-- Q5 -->
+        <div class="subsection">病気・ケガの手術」や「美容外科の手術」を，受けたことがありますか？ : <%-data.Q5%></div>
+        <%if(data.Q5=="ある"){%>
+          <p>いつ頃：<%-data.Q501%></p>
+          <p>状況等：<%-data.Q502%></p>
+        <%}%>
+
+        <!-- Q6 -->
+        <div class="subsection">手術や出産時に輸血をしたことがありますか？ : <%-data.Q6%></div>
+        <%if(data.Q6=="ある"){%>
+          <p>いつ頃：<%-data.Q601%></p>
+          <p>内容：<%-data.Q602%></p>
+          <p>手術後，血液検査：<%-data.yuketsu%></p>
+          <p>詳細</p>
+          <p><%-data.yuketsuDetail%></p>
+        <%}%>
+
+        <!-- Q7 -->
+        <div class="subsection">アートメイクや入れ墨をしたことがありますか？ : <%-data.Q7%></div>
+        <%if(data.Q7=="ある"){%>
+          <p>部位や大きさ：<%-data.Q701%></p>
+          <p>刺青検査：<%-data.irezumi%></p>
+          <p>詳細：<%-data.irezumiDetail%></p>
+        <%}%>
+
+        <!-- Q8 -->
+        <div class="subsection">女性の方へ</div>
+          <%var value = ""%>
+          <% if(data.Q8!=undefined){ %> 
+            <%if(Array.isArray(data.Q8)){%>
+              <%for(var i in data.Q8){%>
+                <%value+=data.Q8[i];%>
+                <%if(data.Q8[i]=="妊娠中"&&data.term!=undefined){value+="("+data.term+"ヶ月)";}%>
+                <%value+=",";%>
+              <%}%>
+            <%}else{%>
+              <%value = data.Q8;%>
+              <%if(data.Q8=="妊娠中"&&data.term!=undefined){value+="("+data.term+"ヶ月)";}%>
+            <%}%>
+          <td><%-value%></td>
+          <%}%>
+      </div>
+    </div>
+    <!-- Q9 -->
+    <div class="card mb-3">
+      <div class="card-header section">カウンセリングを受けたい項目
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <%if(Array.isArray(data.Q9)){%>
+            <% for(var value in data.Q9){%>
+              
+              <div class="col-md-4"><%-value%></div>
+            <%}; %> 
+          <%};%>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="card mb-3">
+      <div class="card-header section">本日治療の希望</div>
+      <div class="card-body">
+        <p><%-data.Q10%></p>
+      </div>
+    </div>
+
+
+    <div class="d-grid gap-2 col-2 mx-auto mb-3">
+      <input type="button" class="btn btn-secondary" onclick="history.back()" value="フォームへ戻る">
+      <input type="button" class="btn btn-primary" onclick="location.href='beautySearch'" value="次へ">
+    </div>
+  </div>
+  
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
