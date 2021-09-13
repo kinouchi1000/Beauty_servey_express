@@ -3,7 +3,6 @@ const decodeCSV = require('./tools/decodeCSV.js');
 const makePDF = require('./tools/makePDF.js');
 const makeInfo = require('./tools/PersonInfo.js');
 const express = require("express");
-const PersonInfo = require('./tools/PersonInfo.js');
 const app = express();
 
 app.set('view engine', 'ejs');

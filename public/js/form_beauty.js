@@ -28,16 +28,24 @@
           form.method = "post";
           form.action = "/submit_beautySearch";
           
-          var data1 = document.createElement('input');
-          var data2 = document.createElement('input');
-          data1.type = 'hidden'; //入力フォームが表示されないように
-          data2.type = 'hidden'; //入力フォームが表示されないように
-          data1.name = 'data1';
-          data2.name = 'data2';
+          var data1 = document.getElementById('data1')
+          var data2 = document.getElementById('data2')
+
+          if(data1==null||data2==null){
+            data1 = document.createElement('input');
+            data2 = document.createElement('input');
+            data1.type = 'hidden'; //入力フォームが表示されないように
+            data2.type = 'hidden'; //入力フォームが表示されないように
+            data1.name = 'data1';
+            data2.name = 'data2';
+            data1.id = 'data1';
+            data2.id = 'data2';
+          }
+
           data1.value = canvas1;
           data2.value = canvas2;
-          form.appendChild(data1)
-          form.appendChild(data2)
+          form.appendChild(data1);
+          form.appendChild(data2);
           
           form.submit();
         }

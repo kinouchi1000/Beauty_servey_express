@@ -14,8 +14,105 @@
   <header class='ly_header'>
     <h1 class='main-tytle'>美容アンケート</h1>
   </header>
-  <h1><%=data.name%>様</h1>
-  <a href="/monshin">フォームに戻る</a>
+  <div class='container'>
+    <div class="card mb-3">
+      <div class="card-header section">部位ごとの質問</div>
+      <div class="card-body">
+        <table class="table">
+          <tr>
+            <%if(data.Q1 != undefined){%>
+            <th scope="row">額</th>
+            <%var value = data.Q1;%>
+            <%if(Array.isArray(value)){value = value.join(",");}%>
+            <td><%-value%></td>
+          </tr>
+          <tr>
+            <%}if(data.Q2 != undefined){%>
+            <th scope="row">目元</th>
+            <%var value = data.Q2;%>
+            <%if(Array.isArray(value)){value = value.join(",");}%>
+            <td><%-value%></td>
+          </tr>
+          <tr>
+            <%}if(data.Q103 != undefined){%>
+            <th scope="row">口元</th>
+            <%var value = data.Q103;%>
+            <%if(Array.isArray(value)){value = value.join(",");}%>
+            <td><%-value%></td>
+          </tr>
+          <tr>
+            <%}if(data.Q104 != undefined){%>
+            <th scope="row">首元</th>
+            <%var value = data.Q104;%>
+            <%if(Array.isArray(value)){value = value.join(",");}%>
+            <td><%-value%></td>
+          </tr>
+          <tr>
+            <%}if(data.Q105 != undefined){%>
+            <th scope="row">肌質</th>
+            <%var value = data.Q105;%>
+            <%if(Array.isArray(value)){value = value.join(",");}%>
+            <td><%-value%></td>
+          </tr>
+          <tr>
+            <%}if(data.Q106 != undefined){%>
+            <th scope="row">鼻</th>
+            <%var value = data.Q106;%>
+            <%if(Array.isArray(value)){value = value.join(",");}%>
+            <td><%-value%></td>
+          </tr>
+          <tr>
+            <%}if(data.Q107 != undefined){%>
+            <th scope="row">脂肪</th>
+            <%var value = data.Q107;%>
+            <%if(Array.isArray(value)){value = value.join(",");}%>
+            <td><%-value%></td>
+            <%}%>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- Q1 -->
+    <div class="card mb-3">
+      <div class="card-header section">その他問診</div>
+      <div class="card-body">
+        <!-- Q8 -->
+        <div class="subsection">肩こりや腰痛の経験 : <%-data.Q8%></div>
+
+        <!-- Q9 -->
+        <div class="subsection">肩こりのケアの経験 : <%-data.Q9%></div>
+
+        <!-- Q10 -->
+        <div class="subsection">ご帰宅の希望時間 : <%-data.Q10%></div>
+        <%if(data.Q9 == "その他"){%>
+          <div><%-Q10_time%></div>
+        <%}%>
+
+        <!-- Q11 -->
+        <div class="subsection">本日最後にお召し上がりになられたもの</div>
+        <table class="table">
+          <tr>
+            <th>食事</th>
+            <td><%-data.Q11_meal%></td>
+            <td><%-data.Q11_meal_time%></td>
+          </tr>
+          <tr>
+            <th>水分</th>
+            <td><%-data.Q11_water%></td>
+            <td><%-data.Q11_water_time%></td>
+          </tr>
+        </table>
+
+        <!-- Q12 -->
+        <div class="subsection">授乳経験(バストのご相談をされる方のみ) : <%-data.Q12%></div>
+      </div>
+    </div>
+    <div class="d-grid gap-2 col-2 mx-auto mb-3">
+      <input type="button" class="btn btn-secondary" onclick="history.back()" value="フォームへ戻る">
+      <input type="button" class="btn btn-primary" onclick="location.href='/'" value="トップへ戻る">
+    </div>
+  </div>
+
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
