@@ -8,16 +8,22 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(express.urlencoded({ limit:'50mb',extended: false }));
-//app.use(express.json({ extended: true, limit: "10mb" }));
+
+var customer_data =null
 
 //個人情報オブジェクト
 var personalInfo = makeInfo(null);
 
 // top
 app.get("/", (req, res)=>{
+  customer_data = null
   res.render("top.ejs");
+<<<<<<< HEAD
   personalInfo= makeInfo(null)
 })
+=======
+});
+>>>>>>> 42892967200637920837359376a6a5a15fbf89aa
 
 // 問診票
 app.get("/monshin", (req, res)=>{
@@ -27,14 +33,23 @@ app.get("/monshin", (req, res)=>{
 
 //BMC Members入会
 app.get("/BMCMembership", (req, res) => {
+<<<<<<< HEAD
   console.log("BMC会員登録票表示")
   res.render("BMCMembership.ejs",{data:personalInfo});
+=======
+  console.log("BMCアンケート表示");
+  res.render("BMCMembership.ejs",{data:customer_data});
+>>>>>>> 42892967200637920837359376a6a5a15fbf89aa
 });
 
 // 美容アンケート
 app.get("/beautySearch", (req, res) => {
   console.log("美容アンケート表示");
+<<<<<<< HEAD
   res.render("beautySearch",{data: personalInfo});
+=======
+  res.render("beautySearch",{data:customer_data});
+>>>>>>> 42892967200637920837359376a6a5a15fbf89aa
 });
 
 ///////////////////CSV出力/////////////////////
@@ -46,6 +61,7 @@ app.post("/submit_monshin", (req, res) => {
   let data = decodeCSV(req.body);
   personalInfo= makeInfo(req.body)
   writeFile(file_name,data);
+  customer_data = req.body
   res.render("monshin_confirm", { data: req.body });
   
 });
