@@ -14,8 +14,105 @@
   <header class='ly_header'>
     <h1 class='main-tytle'>BMC入会申込書</h1>
   </header>
-  <h1><%=data.name%>様</h1>
-  <a href="/monshin">フォームに戻る</a>
+  <div class="container">
+    <div class="section">入力データを確認してください</div>
+    <div class="card mb-3">
+      <div class="card-header">お客様情報</div>
+      <div class="card-body">
+        <table class="table">
+          <tr>
+            <th scope="row">お名前</th>
+            <td><%-data.name%></td>
+          </tr>
+          <tr>
+            <th scope="row">ふりがな</th>
+            <td><%-data.hurigana%></td>
+          </tr>
+          <tr>
+            <th scope="row">生年月日</th>
+            <td><%-data.birthDate%></td>
+          </tr>
+          <tr>
+            <th scope="row">年齢</th>
+            <td><%-data.age%></td>
+          </tr>
+          <tr>
+            <th scope="row">性別</th>
+            <td><%-data.sex%></td>
+          </tr>
+          <tr>
+            <th scope="row">郵便番号</th>
+            <td><%-data.zip11%></td>
+          </tr>
+          <tr>
+            <th scope="row">自宅住所</th>
+            <td><%-data.addr11%></td>
+          </tr>
+          <%if(data.homeNo != ""){%>
+            <tr>
+              <th scope="row">自宅電話番号</th>
+              <td><%-data.homeNo%></td>
+            </tr>
+          <%}if(data.mobileNo != ""){%>
+            <tr>
+              <th scope="row">携帯電話番号</th>
+              <td><%-data.mobileNo%></td>
+            </tr>
+            <tr>
+              <th scope="row">ご職業</th>
+              <td><%-data.job%></td>
+            </tr>
+          <%}%>
+        </table>
+      </div>
+    </div>
+    <!-- お得な情報 -->
+    <div class='card mb-3 gray-back'>
+      <div class="card-header">お得な情報</div>
+      <div class='card-body'>
+        <table class='table'>
+          <tr>
+            <th scope='row'>会員様特典<br>郵送or専用メール配信</th>
+            <td>
+              <%console.log(data.membership);%>
+              <%if(!(data.membership === undefined)){%>
+              <div>希望する</div>
+              <%}else{%>
+                <div>希望しない</div>
+              <%}%>
+            </td>
+            <td><u>年一回</u>を目安に配信</td>
+          </tr>
+          <tr>
+            <th scope='row'>LINEお友達特典<br> ※歯科除く</th>
+            <td>
+              <%if(!(data.LINE === undefined)){%>
+                <div>希望する</div>
+                <%}else{%>
+                  <div>希望しない</div>
+                <%}%>
+            </td>
+            <td>不定期</td>
+          </tr>
+          <tr>
+            <th scope='row'>メールマガジン配信</th>
+            <td>
+              <%if(!(data.mailMagazine === undefined)){%>
+                <div>希望する</div>
+                <%}else{%>
+                  <div>希望しない</div>
+                <%}%>
+            </td>
+            <td><u>月1～2回</u>の配信</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="d-grid gap-2 col-2 mx-auto mb-3">
+      <input type="button" class="btn btn-secondary" onclick="history.back()" value="フォームへ戻る">
+      <input type="button" class="btn btn-primary" onclick="location.href='beautySearch'" value="次へ">
+    </div>
+  </div>
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

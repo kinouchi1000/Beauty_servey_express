@@ -113,8 +113,8 @@
               <%var homeTelChecked = '';var mobileTelChecked = '';%>
               <%var homeTelDisabled = 'disabled';var mobileTelDisabled = 'disabled';%>
               <% console.log(data.homeNo);console.log(data.mobileNo); %> 
-              <%if(!(data.homeNo === undefined))   {homeNo = data.homeNo; homeTelChecked='checked';homeTelDisabled=''}%>
-              <%if(!(data.mobileNo === undefined)) {mobileNo = data.mobileNo; mobileTelChecked='checked';mobileTelDisabled=''}%>
+              <%if(data.homeNo != "")   {homeNo = data.homeNo; homeTelChecked='checked';homeTelDisabled=''}%>
+              <%if(data.mobileNo != "") {mobileNo = data.mobileNo; mobileTelChecked='checked';mobileTelDisabled=''}%>
               <p>電話番号</p>
               <div class='input-group has-validation'>
                 <span class='input-group-text' id='homeTel'>

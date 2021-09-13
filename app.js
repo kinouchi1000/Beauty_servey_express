@@ -1,7 +1,9 @@
 const writeFile = require('./tools/writeFile.js');
 const decodeCSV = require('./tools/decodeCSV.js');
 const makePDF = require('./tools/makePDF.js');
+const makeInfo = require('./tools/PersonInfo.js');
 const express = require("express");
+const PersonInfo = require('./tools/PersonInfo.js');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -9,9 +11,13 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ limit:'50mb',extended: false }));
 //app.use(express.json({ extended: true, limit: "10mb" }));
 
+//個人情報オブジェクト
+var personalInfo = makeInfo(null);
+
 // top
 app.get("/", (req, res)=>{
   res.render("top.ejs");
+  personalInfo= makeInfo(null)
 })
 
 // 問診票
@@ -22,18 +28,14 @@ app.get("/monshin", (req, res)=>{
 
 //BMC Members入会
 app.get("/BMCMembership", (req, res) => {
-  res.render("BMCMembership.ejs");
+  console.log("BMC会員登録票表示")
+  res.render("BMCMembership.ejs",{data:personalInfo});
 });
 
 // 美容アンケート
 app.get("/beautySearch", (req, res) => {
   console.log("美容アンケート表示");
-  res.render("beautySearch");
-});
-// 確認画面
-app.get("/confirm", (req, res) => {
-  console.log("確認画面表示");
-  res.render("confirm");
+  res.render("beautySearch",{data: personalInfo});
 });
 
 ///////////////////CSV出力/////////////////////
@@ -42,7 +44,8 @@ app.get("/confirm", (req, res) => {
 app.post("/submit_monshin", (req, res) => {
 
   file_name = "data/CSVMonshin/data_" + req.body.name + ".csv";
-  let data = decodeCSV(req.body)
+  let data = decodeCSV(req.body);
+  personalInfo= makeInfo(req.body)
   writeFile(file_name,data);
   res.render("monshin_confirm", { data: req.body });
   
@@ -52,10 +55,11 @@ app.post("/submit_monshin", (req, res) => {
 app.post("/submit_BMCMembership", (req, res) => {
   
   file_name = "data/CSVMembership/data_" + req.body.name + ".csv";
-  let data = decodeCSV(req.body)
+  let data = decodeCSV(req.body);
+  personalInfo= makeInfo(req.body);
   writeFile(file_name,data);
   makePDF(req.body);
-  res.render("BMCMembershp_confirm", { data: req.body });
+  res.render("BMCMembership_confirm", { data: req.body });
 
 });
 
@@ -67,6 +71,8 @@ app.post("/submit_beautySearch", (req, res) => {
   img2_file_name = "data/imgData2/data_" + req.body.name + ".png";
 
   const data = decodeCSV(req.body,["data1","data2","ID"]);
+  //個人情報の更新
+  personalInfo= makeInfo(req.body);
 
   var img1 = req.body.data1.replace(/^data:image\/png;base64,/, "");
   var img2 = req.body.data2.replace(/^data:image\/png;base64,/, "");
