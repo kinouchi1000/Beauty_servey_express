@@ -1,97 +1,238 @@
-const fonts = {
-  nomal: {
-    normal: 'fonts/GenShinGothic-Bold.ttf',
-    bold: 'fonts/GenShinGothic-Normal.ttf',
-  },
-};
+// const fonts = {
+//   nomal: {
+//     normal: 'fonts/GenShinGothic-Bold.ttf',
+//     bold: 'fonts/GenShinGothic-Normal.ttf',
+//   },
+// };
 
-const PdfPrinter = require('pdfmake');
-const printer = new PdfPrinter(fonts);
+const PDFDocument = require('pdfkit');
 const fs = require('fs');
-
 
 module.exports = (data)=>{
 
+  //debug 
+  data = {
+    name :"木内貴浩",
+    hurigana:"きのうち たかひろ",
+    birthDate:"2021-07-19",
+    age:"21",
+    sex:"男",
+    zip11:"7730018",
+    addr11:"豊橋市天白町ひばりが丘１−１豊橋技術科学大学学生宿舎G1-302-5",
+    homeNo:"0885-37-3005",
+    mobileNo:"080-2974-9595",
+    email : "1111@bb.cc.jj",
+    job:"学生",
+    membership:"希望する",
+    mailMagazine:"希望する"    
+  };
+
+  //parameter "お得な情報"
   var membership ="";
   var LINE = "";
   var mailMagazine = "";
-  if(!(data.membership === undefined))membership = data.membership;
-  if(!(data.LINE === undefined))      LINE = data.LINE;
-  if(!(data.mailMagazine === undefined))mailMagazine = data.mailMagazine;
+  if(!(data.membership === undefined)){membership = "☑"}else{membership="□"};
+  if(!(data.LINE === undefined))      {LINE = "☑"}else{LINE="□"};
+  if(!(data.mailMagazine === undefined)){mailMagazine = "☑"}else{mailMagazine="□"}
+  const filename = 'data/PDFMembership/'+data.name+'.pdf'
 
-  const docDefinition = {
-    content: [
-      { text: 'BMC会員登録', style: 'title' },
-      { text: "個人情報",style:'h1', margin:[0,5]},
-      { text: "お名前",style:'h2'},
-      { text: data.name, style:'p_small' },
-      { text: data.name, style:'p',margin:[0,0,0,5] },
-      { text: "生年月日",style:'h2'},
-      { text: data.birthDate, style:'p',margin:[0,0,0,5] },
-      { text: "年齢",style:'h2'},
-      { text: data.age, style:'p',margin:[0,0,0,5] },
-      { text: "性別",style:'h2'},
-      { text: data.sex, style:'p',margin:[0,0,0,5] },
-      { text: "住所",style:'h2'},
-      { text: data.zip11, style:'p' },
-      { text: data.addr11, style:'p',margin:[0,0,0,5] },
-      { text: "電話番号",style:'h2'},
-      { text: data.homeNo, style:'p' },
-      { text: data.mobileNo, style:'p',margin:[0,0,0,5] },
-      { text: "職業",style:'h2'},
-      { text: data.job, style:'p',margin:[0,0,0,5] },
-      
-      //お得な情報
-      { 
-        layout:'lightHorizontalLines',
-        table: {
-          // headers are automatically repeated if the table spans over multiple pages
-          // you can declare how many rows should be treated as headers
-          headerRows: 0,
-          body: [
-            [ { text: '会員様特典郵便or専用メール配信', bold:true}, {text:membership, bold:false} ],
-            [ { text: 'LINEお友達特典※歯科除く', bold:true}, {text:LINE,bold:false} ],
-            [ { text: 'メールマガジン配信', bold: true }, {text:mailMagazine,bold:false} ]
-          ]
-        },
-      },
-    ],
-    styles: {
-      title: {
-        font: 'nomal',
-        fontSize: 24,
-        alignment:"center",
-        bold:true,
-      },
-      h1: {
-        font: 'nomal',
-        fontSize: 18,
-        bold: true,
-      },
-      h2: {
-        font: 'nomal',
-        fontSize: 12,
-        bold: true,
-      },
-      p:{
-        font: 'nomal',
-        fontSize: 10,
-        bold:false,
-      },
-      p_small:{
-        font: 'nomal',
-        fontSize: 7,
-        bold:false,
-      }
-    },
-    defaultStyle: {
-      font: 'nomal',
-      fontSize: 14,
-      bold:false,
-    }
-  };
+  // set fonts
+  const Bold  = "./fonts/GenShinGothic-Bold.ttf"
+  const Heavy = "./fonts/GenShinGothic-Heavy.ttf"
+  const Normal = "./fonts/GenShinGothic-Normal.ttf" 
+
+  const DayList = ["日","月","火","水","木","金","土"]
+  const date = new Date();
+  const today = date.getFullYear()+"年　　"+date.getMonth()+"月　"+date.getDate()+"日　（"+　DayList[date.getDay()]+"）";
+  // --------------Create a document-----------
+  const doc = new PDFDocument();
+
+  // Pipe its output somewhere, like to a file or HTTP response
+  // See below for browser usage
+  doc.pipe(fs.createWriteStream(filename));
+
+
+  // Add an image, constrain it to a given size, and center it vertically and horizontally
+  doc.image('./public/image/BMC.png', 0,0,{
+    fit: [620,10000],
+  });
+
+  // Embed a font, set the font size, and render some text
+  doc
+    .font(Normal)
+    .fontSize(10)
+    .text(today,350,15, {
+      width:200,
+      align:'center'
+    });
+
+  doc
+    .font(Normal)
+    .fontSize(10)
+    .text('☑', 20,68,{
+      width:10,
+      align:'center'
+    });
+
+  //ふりがな
+  doc
+    .font(Normal)
+    .fontSize(10)
+    .text(data.hurigana, 110,112,{
+      width:440,
+      align:'center'
+    });
+  // Name
+  doc
+    .font(Normal)
+    .fontSize(20)
+    .text(data.name, 110,127,{
+      width:440,
+      align:'center'
+    });
+  // birthDate
+  // year
+  var bDate = data.birthDate.split('-')
+  doc
+  .font(Normal)
+    .fontSize(10)
+    .text('西暦　　'+ bDate[0], 210,160,{
+      width:80,
+      align:'center'
+    });
+  // month
+  doc
+  .font(Normal)
+    .fontSize(10)
+    .text(bDate[1], 300,160,{
+      width:20,
+      align:'center'
+    });
+  // date
+  doc
+  .font(Normal)
+    .fontSize(10)
+    .text(bDate[2], 330,160,{
+      width:20,
+      align:'center'
+    });
   
-  const pdfDoc = printer.createPdfKitDocument(docDefinition);
-  pdfDoc.pipe(fs.createWriteStream('data/PDFMembership/'+data.name+'.pdf'));
-  pdfDoc.end();
+  //age
+  doc
+  .font(Normal)
+    .fontSize(10)
+    .text(data.age, 367,160,{
+      width:30,
+      align:'center'
+    });
+
+   // SEX
+  doc
+    .font(Normal)
+    .fontSize(10)
+    .text(data.sex, 540,160,{
+      width:10,
+      align:'center'
+  });
+
+  // zip number top3
+  doc
+    .font(Normal)
+    .fontSize(8)
+    .text(data.zip11.slice(0,3), 114,178,{
+      width:20,
+      align:'center'
+  });
+    // zip number
+    doc
+    .font(Normal)
+    .fontSize(8)
+    .text(data.zip11.slice(3,7), 140,178,{
+      width:30,
+      align:'center'
+  });
+
+  // address
+  doc
+  .font(Normal)
+  .fontSize(12)
+  .text(data.addr11, 110,190,{
+    width:440,
+    align:'center'
+  });
+
+  //tellphone No
+  if(!(data.homeNo === undefined)){
+    doc
+    .font(Normal)
+    .fontSize(10)
+    .text(data.homeNo, 220,215,{
+      width:340,
+      align:'center'
+    });
+  }
+  //mobile phone Number
+  if(!(data.homeNo === undefined)){
+    doc
+    .font(Normal)
+    .fontSize(10)
+    .text(data.mobileNo, 220,232,{
+      width:340,
+      align:'center'
+    });
+  }
+
+  //Email address
+  doc
+    .font(Normal)
+    .fontSize(10)
+    .text(data.email, 110,250,{
+      width:440,
+      align:'center'
+    });
+
+  //Email sending
+
+  doc
+  .font(Normal)
+  .fontSize(10)
+  .text(membership, 220,262,{
+    width:10,
+    align:'center'
+  });
+
+
+  //LINE
+  doc
+  .font(Normal)
+  .fontSize(10)
+  .text(LINE, 220,326,{
+    width:10,
+    align:'center'
+  });
+  
+
+
+  //mail magazine
+  doc
+  .font(Normal)
+  .fontSize(10)
+  .text(mailMagazine, 220,388,{
+    width:10,
+    align:'center'
+  });
+  
+
+  //job
+  doc
+  .font(Normal)
+  .fontSize(20)
+  .text(data.job, 110,415,{
+    width:440,
+    align:'center'
+  });
+
+  
+  // Finalize PDF file
+  doc.end();
 }
