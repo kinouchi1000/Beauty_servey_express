@@ -10,22 +10,22 @@ const fs = require('fs');
 
 module.exports = (data)=>{
 
-  //debug 
-  data = {
-    name :"木内貴浩",
-    hurigana:"きのうち たかひろ",
-    birthDate:"2021-07-19",
-    age:"21",
-    sex:"男",
-    zip11:"7730018",
-    addr11:"豊橋市天白町ひばりが丘１−１豊橋技術科学大学学生宿舎G1-302-5",
-    homeNo:"0885-37-3005",
-    mobileNo:"080-2974-9595",
-    email : "1111@bb.cc.jj",
-    job:"学生",
-    membership:"希望する",
-    mailMagazine:"希望する"    
-  };
+  // //debug 
+  // data = {
+  //   name :"木内貴浩",
+  //   hurigana:"きのうち たかひろ",
+  //   birthDate:"2021-07-19",
+  //   age:"21",
+  //   sex:"男",
+  //   zip11:"7730018",
+  //   addr11:"豊橋市天白町ひばりが丘１−１豊橋技術科学大学学生宿舎G1-302-5",
+  //   homeNo:"0885-37-3005",
+  //   mobileNo:"080-2974-9595",
+  //   email : "1111@bb.cc.jj",
+  //   job:"学生",
+  //   membership:"希望する",
+  //   mailMagazine:"希望する"    
+  // };
 
   //parameter "お得な情報"
   var membership ="";
@@ -191,12 +191,12 @@ module.exports = (data)=>{
       align:'center'
     });
 
-  //Email sending
+  //membership
 
   doc
   .font(Normal)
   .fontSize(10)
-  .text(membership, 220,262,{
+  .text(membership, 220,263,{
     width:10,
     align:'center'
   });

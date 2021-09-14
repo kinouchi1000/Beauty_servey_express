@@ -19,9 +19,6 @@ app.get("/", (req, res)=>{
   customer_data = null
   res.render("top.ejs");
   personalInfo= makeInfo(null)
-
-  //debug
-  makePDF(null);
 })
 
 
