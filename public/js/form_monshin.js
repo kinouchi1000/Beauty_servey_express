@@ -1,6 +1,16 @@
 //Can't back to previoous Page
 //History API が使えるブラウザかどうかをチェック
 $(function(){
+  Q1Change();
+  Q2Change();
+  Q3Change();
+  Q4Change();
+  Q5Change();
+  Q6Change();
+  Q7Change();
+  QHNChange();
+  QMNChange();
+
   if (window.history && window.history.pushState) {
     //. ブラウザ履歴に１つ追加
     history.pushState("nohb", null, "");

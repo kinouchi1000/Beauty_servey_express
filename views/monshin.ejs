@@ -15,6 +15,11 @@
     <h1 class='main-tytle'>問診票・診療申込書</h1>
   </header>
   <div class="container mb-3">
+<%const chkData =(value)=>{if(value === undefined){return ""}else{return value}}%>
+<%const findRetternChecked = (list,str)=>{%>
+<%var List;if(Array.isArray(list)){List =list }else{List = [list]};%>
+<%if(List.includes(str)){return "checked"}else{return ""}%>
+<%}%>
     <!-- お客様情報入力フォーム -->
     <form class="needs-validation" name="monshin" novalidate>
       <div class="section">お客様情報</div>
@@ -24,7 +29,7 @@
             <!-- 名前 -->
             <div class="col-md-6 mb-3">
               <label for="name" class="form-label">お名前</label>
-              <input type="text" class="form-control" id="name" name="name" value="" required>
+              <input type="text" class="form-control" id="name" name="name" value="<%=chkData(data.name)%>" required>
               <div class="invalid-feedback">
                 お名前を入力してください．
               </div>
@@ -33,7 +38,7 @@
             <!-- ふりがな -->
             <div class="col-md-6 mb-3">
               <label for="hurinana" class="form-label">ふりがな</label>
-              <input type="text" class="form-control" id="hurigana" name="hurigana" value=""
+              <input type="text" class="form-control" id="hurigana" name="hurigana" value="<%= chkData(data.hurigana)%>"
                 required>
               <div class="invalid-feedback">
                 ふりがなを入力してください．
@@ -44,7 +49,7 @@
             <!-- 生年月日 -->
             <div class="col-md-4 mb-3">
               <label for="birthDate" class="form-label">生年月日</label>
-              <input type="date" class="form-control" id="birthDate" name="birthDate" value=""
+              <input type="date" class="form-control" id="birthDate" name="birthDate" value="<%= chkData(data.birthDate)%>"
                 required>
               <div class="invalid-feedback">
                 誕生日を入力してください．
@@ -55,7 +60,7 @@
             <div class="col-md-4 mb-3">
               <label for="age" class="form-label">年齢</label>
               <div class="input-group has-validation">
-                <input type="number" min="1" max="150" class="form-control no-spin" name="age" value="" aria-describedby="age"
+                <input type="number" min="1" max="150" class="form-control no-spin" name="age" value="<%= chkData(data.age)%>" aria-describedby="age"
                   required>
                 <span class="input-group-text" id="age">歳</span>
                 <div class="invalid-feedback">
@@ -67,15 +72,17 @@
             <!-- 性別 -->
             <div class="col-md-2 mb-3">
               <p>性別</p>
+              <% var manChecked = '';%>
+              <% var womanChecked = '';%>
+              <%sex =  chkData(data.sex)%>
+              <% if(sex=='男'){ manChecked = 'checked';} else if(sex=='女'){womanChecked = 'checked';}%>
               <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" id="sex" name="sex" value="男" required>
+                <input type='radio' class='form-check-input' id='sex' name='sex' value='男' <%=manChecked%> required>
                 <label class="form-check-label" for="sex">男</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" id="sex" name="sex" value="女" required>
+                <input type="radio" class="form-check-input" id="sex" name="sex" value="女" <%=womanChecked%> required >
                 <label class="form-check-label" for="sex">女</label>
-                <!-- 要修繕############## -->
-                <!-- <div class="invalid-feedback">未選択</div> -->
               </div>
             </div>
 
@@ -85,7 +92,7 @@
               <div class="input-group has-validation" style="width:300px;">
                 <span class="input-group-text" id="zip">〒 (数字7桁)</span>
                 <input type="number" maxlength="7" class="form-control no-spin" name="zip11"
-                  placeholder='0123456' aria-describedby="zip11"
+                  placeholder='0123456' aria-describedby="zip11" value = "<%= chkData(data.zip11)%>"
                   onKeyUp="AjaxZip3.zip2addr(this,'','addr11','addr11');" required>
                 <div class="invalid-feedback">
                   数値7桁で郵便番号を入力してください．
@@ -94,7 +101,7 @@
               <div class="input-group has-validation">
                 <span class="input-group-text" id="addr11">自宅</span>
                 <input type="text" class="form-control" name="addr11" size="60"
-                  aria-describedby="addr11" required>
+                  value = "<%= chkData(data.addr11)%>" aria-describedby="addr11" required>
                 <div class="invalid-feedback">
                   住所を入力してください．
                 </div>
@@ -110,7 +117,7 @@
                   <input type="checkbox" name="homeTelFlg" onclick="HNChange()">
                 </span>
                 <input type="tel" class="form-control" pattern="[0-9]{4}-[0-9]{2}-[0-9]{4}" 
-                  name="homeNo" placeholder='0000-00-0000'
+                  name="homeNo" placeholder='0000-00-0000' value="<%= chkData(data.homeNo)%>"
                   aria-describedby="homeNo" required disabled>
                 <div class="invalid-feedback">
                   0000-00-0000の形で電話番号を入力してください．
@@ -122,7 +129,7 @@
                   <input type="checkbox" name="mobileTelFlg" onclick="MNChange()">
                 </span>
                 <input type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" 
-                  name="mobileNo" placeholder='000-0000-0000'
+                  name="mobileNo" placeholder='000-0000-0000' value ="<%= chkData(data.mobileNo)%>"
                   aria-describedby="mobileNo" required disabled>
                 <div class="invalid-feedback">
                   000-0000-0000の形で電話番号を入力してください．
@@ -140,150 +147,156 @@
 
       <!-- boot strap -->
       <!-- Q1 -->
+
       <div class="card shadow-sm mb-3 ">
         <h5 class="card-header">
 					Q1 : 現在治療中の病気または過去に治療を受けた病気がありますか？
-					<label><input type="radio" name="Q1"  onclick="Q1Change()" value = "ない" checked/>ない</label>
-					<label><input type="radio" name="Q1"  onclick="Q1Change()" value = "ある"/>ある</label>
+          <% var noCheck = ""; var yesCheck = "" %>
+          <%var Q1 = chkData(data.Q1)%>
+          <% if(Q1 =="ある"){yesCheck ="checked"}else{ noCheck ="checked" } %> 
+					<label><input type="radio" name="Q1"  onclick="Q1Change()" value = "ない" <%-noCheck%>/>ない</label>
+					<label><input type="radio" name="Q1"  onclick="Q1Change()" value = "ある" <%-yesCheck%>/>ある</label>
 				</h5>
         <!-- Q1で「ある」と答えた場合の入力フォーム -->
         <div class="card-body" id="show1">
           <table class="table">
+            
             <tr>
               <th scope="row">肩・腰の痛み</th>
               <td>
-                <label><input type="checkbox" name="Q101" value="肩こり">肩こり</label>
-                <label><input type="checkbox" name="Q101" value="腰痛">腰痛</label>
-                <label><input type="checkbox" name="Q101" value="五十肩">五十肩</label>
+                <label><input type="checkbox" name="Q101" value="肩こり"  <%=findRetternChecked(data.Q101,"肩こり")%>>肩こり</label>
+                <label><input type="checkbox" name="Q101" value="腰痛"    <%=findRetternChecked(data.Q101,"腰痛")%>>腰痛</label>
+                <label><input type="checkbox" name="Q101" value="五十肩"  <%=findRetternChecked(data.Q101,"五十肩")%>>五十肩</label>
               </td>
             </tr>
             <tr>
               <th scope="row">生活習慣病</th>
               <td>
-                <label><input type="checkbox" name="Q102" value="糖尿病">糖尿病</label>
-                <label><input type="checkbox" name="Q102" value="高コレステロール">高コレステロール</label>
-                <label><input type="checkbox" name="Q102" value="高中性脂肪">高中性脂肪</label>
+                <label><input type="checkbox" name="Q102" value="糖尿病" <%=findRetternChecked(data.Q102,"糖尿病")%>>糖尿病</label>
+                <label><input type="checkbox" name="Q102" value="高コレステロール" <%=findRetternChecked(data.Q102,"高コレステロール")%>>高コレステロール</label>
+                <label><input type="checkbox" name="Q102" value="高中性脂肪" <%=findRetternChecked(data.Q102,"高中性脂肪")%>>高中性脂肪</label>
               </td>
             </tr>
             <tr>
               <th scope="row">心臓</th>
               <td>
-                <label><input type="checkbox" name="Q103" value="不整脈">不整脈</label>
-                <label><input type="checkbox" name="Q103" value="腰痛">腰痛</label>
-                <label><input type="checkbox" name="Q103" value="五十肩">五十肩</label>
+                <label><input type="checkbox" name="Q103" value="不整脈" <%=findRetternChecked(data.Q103,"不整脈")%>>不整脈</label>
+                <label><input type="checkbox" name="Q103" value="腰痛" <%=findRetternChecked(data.Q103,"腰痛")%>>腰痛</label>
+                <label><input type="checkbox" name="Q103" value="五十肩" <%=findRetternChecked(data.Q103,"五十肩")%>>五十肩</label>
               </td>
             </tr>
             <tr>
               <th scope="row">血管や血液</th>
               <td>
-                <label><input type="checkbox" name="Q104" value="高血圧">高血圧</label>
-                <label><input type="checkbox" name="Q104" value="動脈硬化">動脈硬化</label>
-                <label><input type="checkbox" name="Q104" value="貧血">貧血</label>
-                <label><input type="checkbox" name="Q104" value="白血病">白血病</label>
-                <label><input type="checkbox" name="Q104" value="血小板異常">血小板異常</label>
+                <label><input type="checkbox" name="Q104" value="高血圧"    <%=findRetternChecked(data.Q104,"高血圧")%>>高血圧</label>
+                <label><input type="checkbox" name="Q104" value="動脈硬化"  <%=findRetternChecked(data.Q104,"動脈硬化")%>>動脈硬化</label>
+                <label><input type="checkbox" name="Q104" value="貧血"      <%=findRetternChecked(data.Q104,"貧血")%>>貧血</label>
+                <label><input type="checkbox" name="Q104" value="白血病"    <%=findRetternChecked(data.Q104,"白血病")%>>白血病</label>
+                <label><input type="checkbox" name="Q104" value="血小板異常" <%=findRetternChecked(data.Q104,"血小板異常")%>>血小板異常</label>
               </td>
             </tr>
             <tr>
               <th scope="row">脳</th>
               <td>
-                <label><input type="checkbox" name="Q105" value="脳出血">脳出血</label>
-                <label><input type="checkbox" name="Q105" value="脳梗塞">脳梗塞</label>
-                <label><input type="checkbox" name="Q105" value="てんかん">てんかん</label>
-                <label><input type="checkbox" name="Q105" value="けいれん">けいれん</label>
+                <label><input type="checkbox" name="Q105" value="脳出血" <%=findRetternChecked(data.Q105,"脳出血")%>>脳出血</label>
+                <label><input type="checkbox" name="Q105" value="脳梗塞" <%=findRetternChecked(data.Q105,"脳梗塞")%>>脳梗塞</label>
+                <label><input type="checkbox" name="Q105" value="てんかん" <%=findRetternChecked(data.Q105,"てんかん")%>>てんかん</label>
+                <label><input type="checkbox" name="Q105" value="けいれん" <%=findRetternChecked(data.Q105,"けいれん")%>>けいれん</label>
               </td>
             </tr>
             <tr>
               <th scope="row">肺</th>
               <td>
-                <label><input type="checkbox" name="Q106" value="ぜんそく">ぜんそく</label>
-                <label><input type="checkbox" name="Q106" value="気胸">気胸</label>
-                <label><input type="checkbox" name="Q106" value="肺結核">肺結核</label>
+                <label><input type="checkbox" name="Q106" value="ぜんそく"<%=findRetternChecked(data.Q106,"ぜんそ")%>>ぜんそく</label>
+                <label><input type="checkbox" name="Q106" value="気胸" <%=findRetternChecked(data.Q106,"気胸")%>>気胸</label>
+                <label><input type="checkbox" name="Q106" value="肺結核" <%=findRetternChecked(data.Q106,"肺結核")%>>肺結核</label>
               </td>
             </tr>
             <tr>
               <th scope="row">消化管</th>
               <td>
-                <label><input type="checkbox" name="Q107" vlaue="胃炎">胃炎</label>
-                <label><input type="checkbox" name="Q107" vlaue="胃・十二指腸潰瘍">胃・十二指腸潰瘍</label>
+                <label><input type="checkbox" name="Q107" vlaue="胃炎" <%=findRetternChecked(data.Q107,"胃炎")%>>胃炎</label>
+                <label><input type="checkbox" name="Q107" vlaue="胃・十二指腸潰瘍" <%=findRetternChecked(data.Q107,"胃・十二指腸潰瘍")%>>胃・十二指腸潰瘍</label>
               </td>
             </tr>
             <tr>
               <th scope="row">肝臓や腎臓</th>
               <td>
-                <label><input type="checkbox" name="Q108" value="B型・C型肝炎">B型・C型肝炎</label>
-                <label><input type="checkbox" name="Q108" value="肝硬変">肝硬変</label>
-                <label><input type="checkbox" name="Q108" value="腎炎">腎炎</label>
-                <label><input type="checkbox" name="Q108" value="腎不全">腎不全</label>
+                <label><input type="checkbox" name="Q108" value="B型・C型肝炎" <%=findRetternChecked(data.Q108,"B型・C型肝炎")%>>B型・C型肝炎</label>
+                <label><input type="checkbox" name="Q108" value="肝硬変" <%=findRetternChecked(data.Q108,"肝硬変")%>>肝硬変</label>
+                <label><input type="checkbox" name="Q108" value="腎炎" <%=findRetternChecked(data.Q108,"腎炎")%>>腎炎</label>
+                <label><input type="checkbox" name="Q108" value="腎不全" <%=findRetternChecked(data.Q108,"腎不全")%>>腎不全</label>
               </td>
             </tr>
             <tr>
               <th scope="row">心や神経</th>
               <td>
-                <label><input type="checkbox" name="Q109" value="不眠症">不眠症</label>
-                <label><input type="checkbox" name="Q109" value="神経症">神経症</label>
-                <label><input type="checkbox" name="Q109" value="うつ病">うつ病</label>
-                <label><input type="checkbox" name="Q109" value="拒食症">拒食症</label>
-                <label><input type="checkbox" name="Q109" value="パニック障害">パニック障害</label>
+                <label><input type="checkbox" name="Q109" value="不眠症" <%=findRetternChecked(data.Q109,"不眠症")%>>不眠症</label>
+                <label><input type="checkbox" name="Q109" value="神経症" <%=findRetternChecked(data.Q109,"神経症")%>>神経症</label>
+                <label><input type="checkbox" name="Q109" value="うつ病" <%=findRetternChecked(data.Q109,"うつ病")%>>うつ病</label>
+                <label><input type="checkbox" name="Q109" value="拒食症" <%=findRetternChecked(data.Q109,"拒食症")%>>拒食症</label>
+                <label><input type="checkbox" name="Q109" value="パニック障害" <%=findRetternChecked(data.Q109,"パニック障害")%>>パニック障害</label>
               </td>
             </tr>
             <tr>
               <th scope="row">ホルモン</th>
               <td>
-                <label><input type="checkbox" name="Q110" value="甲状腺の病気">甲状腺の病気</label>
-                <label><input type="checkbox" name="Q110" value="更年期障害">更年期障害</label>
+                <label><input type="checkbox" name="Q110" value="甲状腺の病気" <%=findRetternChecked(data.Q110,"甲状腺の病気")%>>甲状腺の病気</label>
+                <label><input type="checkbox" name="Q110" value="更年期障害" <%=findRetternChecked(data.Q110,"更年期障害")%>>更年期障害</label>
               </td>
             </tr>
             <tr>
               <th scope="row">婦人科</th>
               <td>
-                <label><input type="checkbox" name="Q111" value="子宮内膜症">子宮内膜症</label>
-                <label><input type="checkbox" name="Q111" value="子宮筋腫">子宮筋腫</label>
-                <label><input type="checkbox" name="Q111" value="乳腺の病気">乳腺の病気</label>
+                <label><input type="checkbox" name="Q111" value="子宮内膜症" <%=findRetternChecked(data.Q111,"子宮内膜症")%>>子宮内膜症</label>
+                <label><input type="checkbox" name="Q111" value="子宮筋腫" <%=findRetternChecked(data.Q111,"子宮筋腫")%>>子宮筋腫</label>
+                <label><input type="checkbox" name="Q111" value="乳腺の病気" <%=findRetternChecked(data.Q111,"乳腺の病気")%>>乳腺の病気</label>
               </td>
             </tr>
             <tr>
               <th scope="row">目</th>
               <td>
-                <label><input type="checkbox" name="Q112" value="緑内障">緑内障</label>
-                <label><input type="checkbox" name="Q112" value="白内障">白内障</label>
-                <label><input type="checkbox" name="Q112" value="網膜はく離">網膜はく離</label>
-                <label><input type="checkbox" name="Q112" value="視覚障害">視覚障害</label>
+                <label><input type="checkbox" name="Q112" value="緑内障" <%=findRetternChecked(data.Q112,"緑内障")%>>緑内障</label>
+                <label><input type="checkbox" name="Q112" value="白内障" <%=findRetternChecked(data.Q112,"白内障")%>>白内障</label>
+                <label><input type="checkbox" name="Q112" value="網膜はく離" <%=findRetternChecked(data.Q112,"網膜はく離")%>>網膜はく離</label>
+                <label><input type="checkbox" name="Q112" value="視覚障害" <%=findRetternChecked(data.Q112,"視覚障害")%>>視覚障害</label>
               </td>
             </tr>
             <tr>
               <th scope="row">骨</th>
               <td>
-                <label><input type="checkbox" name="Q113" value="椎間板ヘルニア">椎間板ヘルニア</label>
-                <label><input type="checkbox" name="Q113" value="背骨の曲がり">背骨の曲がり</label>
+                <label><input type="checkbox" name="Q113" value="椎間板ヘルニア" <%=findRetternChecked(data.Q113,"椎間板ヘルニア")%>>椎間板ヘルニア</label>
+                <label><input type="checkbox" name="Q113" value="背骨の曲がり" <%=findRetternChecked(data.Q113,"背骨の曲がり")%>>背骨の曲がり</label>
               </td>
             </tr>
             <tr>
               <th scope="row">免疫</th>
               <td>
-                <label><input type="checkbox" name="Q114" value="リウマチ">リウマチ</label>
-                <label><input type="checkbox" name="Q114" value="こう原病">こう原病</label>
-                <label><input type="checkbox" name="Q114" value="アレルギー">アレルギー</label>
-                <label><input type="checkbox" name="Q114" value="免疫不全">免疫不全</label>
+                <label><input type="checkbox" name="Q114" value="リウマチ" <%=findRetternChecked(data.Q114,"リウマチ")%>>リウマチ</label>
+                <label><input type="checkbox" name="Q114" value="こう原病" <%=findRetternChecked(data.Q114,"こう原病")%>>こう原病</label>
+                <label><input type="checkbox" name="Q114" value="アレルギー" <%=findRetternChecked(data.Q114,"アレルギー")%>>アレルギー</label>
+                <label><input type="checkbox" name="Q114" value="免疫不全" <%=findRetternChecked(data.Q114,"免疫不全")%>>免疫不全</label>
                 <p class="annotation">※リウマチの方：金製剤の服用歴　（わずかな期間・量でもご申告ください）</p>
-                <label><input type="radio" name="rheumatism" value="ある">ある</label>
-                <label><input type="radio" name="rheumatism" value="ない">ない</label>
+                
+                <label><input type="radio" name="rheumatism" value="ある"<%=data.rheumatism=="ある"?"checked":""%>>ある</label>
+                <label><input type="radio" name="rheumatism" value="ない"<%=data.rheumatism=="ない"?"checked":""%>>ない</label>
               </td>
             </tr>
             <tr>
               <th scope="row">皮フ</th>
               <td>
-                <label><input type="checkbox" name="Q115" value="アトピー">アトピー</label>
-                <label><input type="checkbox" name="Q115" value="皮フ腫瘍">皮フ腫瘍</label>
-                <label><input type="checkbox" name="Q115" value="光線過敏症">光線過敏症</label>
-                <label><input type="checkbox" name="Q115" value="水虫">水虫</label>
+                <label><input type="checkbox" name="Q115" value="アトピー" <%=findRetternChecked(data.Q115,"アトピー")%>>アトピー</label>
+                <label><input type="checkbox" name="Q115" value="皮フ腫瘍" <%=findRetternChecked(data.Q115,"皮フ腫瘍")%>>皮フ腫瘍</label>
+                <label><input type="checkbox" name="Q115" value="光線過敏症" <%=findRetternChecked(data.Q115,"光線過敏症")%>>光線過敏症</label>
+                <label><input type="checkbox" name="Q115" value="水虫" <%=findRetternChecked(data.Q115,"水虫")%>>水虫</label>
               </td>
             </tr>
             <tr>
               <th scope="row">肌トラブル</th>
               <td>
-                <label><input type="checkbox" name="Q116" value="乾燥">乾燥</label>
-                <label><input type="checkbox" name="Q116" value="かぶれ">かぶれ</label>
-                <label><input type="checkbox" name="Q116" value="ケロイド体質">ケロイド体質</label>
+                <label><input type="checkbox" name="Q116" value="乾燥" <%=findRetternChecked(data.Q116,"乾燥")%>>乾燥</label>
+                <label><input type="checkbox" name="Q116" value="かぶれ" <%=findRetternChecked(data.Q116,"かぶれ")%>>かぶれ</label>
+                <label><input type="checkbox" name="Q116" value="ケロイド体質" <%=findRetternChecked(data.Q116,"ケロイド体質")%>>ケロイド体質</label>
               </td>
             </tr>
 
@@ -291,16 +304,18 @@
               <th colspan="2">
                 <p>その他，上記の症状に当てはまらない場合等はこちらへ記入ください．</p>
                 <textarea class="form-control" name="Q117" cols="100" rows="3"
-                  wrap="hand"></textarea>
+                  wrap="hand" ><%data.Q117%></textarea>
               </th>
             </tr>
+            
             <tr>
               <th colspan="2">
                 <p>治療中・治療期間・完治時期等</p>
                 <textarea class="form-control" name="Q118" cols="100" rows="3"
-                  wrap="hand"></textarea>
+                  wrap="hand" ><%data.Q118%></textarea>
               </th>
             </tr>
+          
           </table>
         </div>
       </div>
@@ -309,8 +324,11 @@
       <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q2 : 最近使用したお薬あるいは現在使用中のお薬はありますか？
-					<label><input  type="radio" name="Q2" onclick="Q2Change();" value="ない" checked/>ない</label>
-					<label><input type="radio" name="Q2" onclick="Q2Change();" value="ある"/>ある</label>
+          <% var noCheck = ""; var yesCheck = "" %>
+          <%var Q2 = chkData(data.Q2)%>
+          <% if(Q2 =="ある"){yesCheck ="checked"}else{ noCheck ="checked" } %> 
+					<label><input  type="radio" name="Q2" onclick="Q2Change();" value="ない" <%-noCheck%>/>ない</label>
+					<label><input type="radio" name="Q2" onclick="Q2Change();" value="ある" <%-yesCheck%>>ある</label>
 				</h5>
         <!-- あると答えた場合の表示部 -->
         <div class="card-body" id="show2">
@@ -330,8 +348,11 @@
       <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q3 : 体に合わない（アレルギーのある）お薬や食べ物はありましたか？
-					<label><input type="radio" name="Q3" onclick="Q3Change();"  value="ない" checked/>ない</label>
-					<label><input type="radio" name="Q3" onclick="Q3Change();"  value="ある"/>ある</label>
+          <% var noCheck = ""; var yesCheck = "" %>
+          <%var Q3 = chkData(data.Q3)%>
+          <% if(Q3 =="ある"){yesCheck ="checked"}else{ noCheck ="checked" } %> 
+					<label><input type="radio" name="Q3" onclick="Q3Change();"  value="ない" <%-noCheck%>/>ない</label>
+					<label><input type="radio" name="Q3" onclick="Q3Change();"  value="ある"<%-yesCheck%> />ある</label>
 				</h5>
         <!-- あると答えた場合の表示部 -->
         <div class="card-body" id="show3">
@@ -356,8 +377,11 @@
       <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q4 : 点滴をされて気分が悪くなったことがありますか？
-					<label><input type="radio" name="Q4" onclick="Q4Change();"  value="ない" checked/>ない</label>
-					<label><input type="radio" name="Q4" onclick="Q4Change();"  value="ある"/>ある</label>
+          <% var noCheck = ""; var yesCheck = "" %>
+          <%var Q4 = chkData(data.Q4)%>
+          <% if(Q4 =="ある"){yesCheck ="checked"}else{ noCheck ="checked" } %> 
+					<label><input type="radio" name="Q4" onclick="Q4Change();"  value="ない" <%-noCheck%>/>ない</label>
+					<label><input type="radio" name="Q4" onclick="Q4Change();"  value="ある" <%-yesCheck%>/>ある</label>
 				</h5>
         <!-- あると答えた場合の表示部 -->
         <div class="card-body" id="show4">
@@ -382,8 +406,11 @@
       <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q5 : 「病気・ケガの手術」や「美容外科の手術」を，受けたことがありますか？
-					<label><input type="radio" name="Q5" onclick="Q5Change();"  value="ない" checked/>ない</label>
-					<label><input type="radio" name="Q5" onclick="Q5Change();"  value="ある"/>ある</label>
+          <% var noCheck = ""; var yesCheck = "" %>
+          <%var Q5 = chkData(data.Q5)%>
+          <% if(Q5 =="ある"){yesCheck ="checked"}else{ noCheck ="checked" } %> 
+					<label><input type="radio" name="Q5" onclick="Q5Change();"  value="ない" <%-noCheck%>/>ない</label>
+					<label><input type="radio" name="Q5" onclick="Q5Change();"  value="ある" <%-yesCheck%>/>ある</label>
 				</h5>
         <!-- あると答えた場合の表示部 -->
         <div class="card-body" id="show5">
@@ -409,8 +436,11 @@
       <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q6 : 手術や出産時に輸血をしたことがありますか？
-					<label><input type="radio" name="Q6" onclick="Q6Change();"  value="ない" checked/>ない</label>
-					<label><input type="radio" name="Q6" onclick="Q6Change();"  value="ある"/>ある</label>
+          <% var noCheck = ""; var yesCheck = "" %>
+          <%var Q6 = chkData(data.Q6)%>
+          <% if(Q6 =="ある"){yesCheck ="checked"}else{ noCheck ="checked" } %> 
+					<label><input type="radio" name="Q6" onclick="Q6Change();"  value="ない" <%-noCheck%>/>ない</label>
+					<label><input type="radio" name="Q6" onclick="Q6Change();"  value="ある" <%-noCheck %> />ある</label>
 				</h5>
         <div class="card-body" id="show6">
           <!-- あると答えた場合の表示部 -->
@@ -445,8 +475,11 @@
       <div class="card shadow-sm mb-3">
         <h5 class="card-header">
 					Q7 : アートメイクや入れ墨をしたことがありますか？
-					<label><input type="radio" name="Q7"onclick="Q7Change();"  value="ない" checked/>ない</label>
-					<label><input type="radio" name="Q7"onclick="Q7Change();"  value="ある"/>ある</label>
+          <% var noCheck = ""; var yesCheck = "" %>
+          <%var Q7 = chkData(data.Q7)%>
+          <% if(Q7 =="ある"){yesCheck ="checked"}else{ noCheck ="checked" } %> 
+					<label><input type="radio" name="Q7"onclick="Q7Change();"  value="ない" <%=noCheck%>/>ない</label>
+					<label><input type="radio" name="Q7"onclick="Q7Change();"  value="ある" <%=yesCheck%>/>ある</label>
 				</h5>
         <!-- あると答えた場合の表示部 -->
         <div class="card-body" id="show7">

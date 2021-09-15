@@ -15,6 +15,7 @@ var customer_data =null
 //個人情報オブジェクト
 var personalInfo = makeInfo(null);
 
+
 // top
 app.get("/", (req, res)=>{
   customer_data = null
@@ -26,22 +27,27 @@ app.get("/", (req, res)=>{
 // 問診票
 app.get("/monshin", (req, res)=>{
   console.log("問診票表示")
-  res.render("monshin");
+  res.render("monshin",{data:req.body});
 });
 
 //BMC Members入会
 app.get("/BMCMembership", (req, res) => {
   console.log("BMC会員登録票表示")
-  res.render("BMCMembership.ejs",{data:personalInfo});
+  res.render("BMCMembership.ejs",{data:req.body});
 });
 
 // 美容アンケート
 app.get("/beautySearch", (req, res) => {
   console.log("美容アンケート表示");
-  res.render("beautySearch",{data: personalInfo});
-
+  res.render("beautySearch",{data:req.body});
 });
 
+
+/////////////////入力画面へ戻る///////////////
+app.post("/monshin", (req, res)=>{
+  console.log("もとに戻る");
+  res.render("monshin",{data:req.body});
+});
 
 //////////////////確認画面/////////////////////
 

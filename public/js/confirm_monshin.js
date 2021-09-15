@@ -17,8 +17,11 @@ function BackToPage(){
 }
 
 function backMonshin(){
-  
-  alert("戻れません");
+  var form = document.getElementById("monshin_confirm")
+  //post
+  form.method = "post";
+  form.action = "/monshin";
+  form.submit();
 }
 
 function submitMonshin(){
@@ -35,7 +38,6 @@ function submitMonshin(){
     data: JSON.stringify(data),
   })
     .done(function (res) {
-      alert("遷移！");
       location.href = "BMCMembership";
     })
     .fail(function (err) {

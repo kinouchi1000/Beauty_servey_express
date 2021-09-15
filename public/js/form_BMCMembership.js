@@ -73,7 +73,7 @@ function MNChange() {
             form.method = "post";
             form.action = "/submit_BMCMembership";
             console.log(form)
-            document.body.append(data);
+            //document.body.append(data);
             form.submit();
         }
         form.classList.add("was-validated");
