@@ -8,11 +8,13 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(express.urlencoded({ limit:'50mb',extended: false }));
+app.use(express.json({ extended: true, limit: "10mb" }));
 
 var customer_data =null
 
 //個人情報オブジェクト
 var personalInfo = makeInfo(null);
+
 
 // top
 app.get("/", (req, res)=>{
@@ -25,20 +27,33 @@ app.get("/", (req, res)=>{
 // 問診票
 app.get("/monshin", (req, res)=>{
   console.log("問診票表示")
-  res.render("monshin");
+  res.render("monshin",{data:req.body});
 });
 
 //BMC Members入会
 app.get("/BMCMembership", (req, res) => {
   console.log("BMC会員登録票表示")
-  res.render("BMCMembership.ejs",{data:personalInfo});
+  res.render("BMCMembership.ejs",{data:req.body});
 });
 
 // 美容アンケート
 app.get("/beautySearch", (req, res) => {
   console.log("美容アンケート表示");
-  res.render("beautySearch",{data: personalInfo});
+  res.render("beautySearch",{data:req.body});
+});
 
+
+/////////////////入力画面へ戻る///////////////
+app.post("/monshin", (req, res)=>{
+  console.log("もとに戻る");
+  res.render("monshin",{data:req.body});
+});
+
+//////////////////確認画面/////////////////////
+
+//　問診票CSV変換
+app.post("/confirm_monshin", (req, res) => {
+  res.render("monshin_confirm", { data: req.body });
 });
 
 ///////////////////CSV出力/////////////////////
@@ -51,8 +66,7 @@ app.post("/submit_monshin", (req, res) => {
   personalInfo= makeInfo(req.body)
   writeFile(file_name,data);
   customer_data = req.body
-  res.render("monshin_confirm", { data: req.body });
-  
+  res.render("BMCMembership")
 });
 
 // BMC入会CSV変換

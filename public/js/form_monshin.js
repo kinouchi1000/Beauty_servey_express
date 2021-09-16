@@ -1,3 +1,24 @@
+//Can't back to previoous Page
+//History API が使えるブラウザかどうかをチェック
+$(function(){
+  Q1Change();
+  Q2Change();
+  Q3Change();
+  Q4Change();
+  Q5Change();
+  Q6Change();
+  Q7Change();
+  HNChange();
+  MNChange();
+
+  history.pushState(null, null, null); //ブラウザバック無効化
+  //ブラウザバックボタン押下時
+  $(window).on("popstate", function (event) {
+    history.pushState(null, null, null);
+    window.alert('前のページに戻る場合、戻るボタンから戻ってください。');
+  });
+});
+
 /* 隠すテーブルのオブジェクトを作成 */
 const item1 = document.getElementById("show1");
 const item2 = document.getElementById("show2");
@@ -155,7 +176,7 @@ function MNChange() {
         } else {
             //post
             form.method = "post";
-            form.action = "/submit_monshin";
+            form.action = "/confirm_monshin";
             form.submit();
         }
         form.classList.add("was-validated");
