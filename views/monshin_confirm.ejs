@@ -161,6 +161,7 @@
                 </td>
               </tr>
             <%}%>
+            <%console.log(data)%>
             <%if(!(data.Q107 === undefined)){%>
               <tr>
                 <th scope="row">消化管</th>
@@ -245,7 +246,7 @@
                   <input type="hidden" name="Q114" value="<%=value[d]%>" ><label> <%-value[d]%> </label>
                   <%}%>
                   <label class="small form-label">※リウマチの方：金製剤の服用歴　（わずかな期間・量でもご申告ください）</label>
-                  <input class="form-control-plaintext" type="text" name="rheumatism" value="<%data.rheumatism%>" readonly>
+                  <input class="form-control-plaintext" type="text" name="rheumatism" value="<%=data.rheumatism%>" readonly>
                 </td>
               </tr>
             <%}%>
@@ -484,10 +485,10 @@
         <div class="card-body">
           <%var value = toArray(data.Q9)%>
           <%for(var d in value){%>
-            <input type="hidden" name="Q8" value="<%=value[d]%>" ><label><%-value[d]%>　　</label>
+            <input type="hidden" name="Q9" value="<%=value[d]%>" ><label><%-value[d]%>　　</label>
           <%}%>
           <p>その他，上記に当てはまらない場合はこちらへご記入ください．</p>
-          <textarea class="form-control" name="Q901" cols="100" rows="3" wrap="hand" readonly></textarea>
+          <textarea class="form-control" name="Q901" cols="100" rows="3" wrap="hand" readonly><%=data.Q901%></textarea>
         </div>
       </div>
 
@@ -495,7 +496,7 @@
       <div class="card shadow-sm mb-3">
         <h5 class="card-header">本日治療を希望されますか？</h5>
         <div class="card-body">
-          <input type="text" class="form-control-plaintext" value="<%=data.Q10%>" readonly>
+          <input type="text" class="form-control-plaintext" name="Q10" value="<%=data.Q10%>" readonly>
         </div>
       </div>
       <div class="d-grid gap-2 col-2 mx-auto mb-3">
