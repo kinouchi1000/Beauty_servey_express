@@ -17,24 +17,30 @@ function backMonshin(){
 
 function submitMonshin(){
 
-  var data = $("form").serializeArray(); // ①form to json
-  data = parseJson(data); // ②json to 欲しい形
+  var form = document.getElementById("monshin_confirm")
   //post
-  $.ajax({
-    type: "POST",
-    url: "/submit_monshin",
-    dataType: "text",
-    contentType: "application/json",
-    scriptCharset: "utf-8",
-    data: JSON.stringify(data),
-  })
-    .done(function (res) {
-      location.href = "BMCMembership";
-    })
-    .fail(function (err) {
-      console.log(err);
-      alert("送信に失敗しました。");
-    });
+  form.method = "post";
+  form.action = "/submit_monshin";
+  form.submit();
+
+  // var data = $("form").serializeArray(); // ①form to json
+  // data = parseJson(data); // ②json to 欲しい形
+  //post
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/submit_monshin",
+  //   dataType: "text",
+  //   contentType: "application/json",
+  //   scriptCharset: "utf-8",
+  //   data: JSON.stringify(data),
+  // })
+  //   .done(function (res) {
+  //     location.href = "BMCMembership";
+  //   })
+  //   .fail(function (err) {
+  //     console.log(err);
+  //     alert("送信に失敗しました。");
+  //   });
 }
 
 
