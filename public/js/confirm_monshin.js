@@ -45,10 +45,10 @@ function submitMonshin(){
 
 
 // ②変換関数：json to 欲しい形
-const parseJson = function (data) {
-  var returnJson = {};
-  for (idx = 0; idx < data.length; idx++) {
-    returnJson[data[idx].name] = data[idx].value;
-  }
-  return returnJson;
-};
+// const parseJson = function (data) {
+//   var returnJson = {};
+//   for (idx = 0; idx < data.length; idx++) {
+//     returnJson[data[idx].name] = data[idx].value;
+//   }
+//   return returnJson;
+// };

@@ -12,6 +12,11 @@
 </head>
 
 <body>
+  <!-- checkedかどうかの判定関数 -->
+  <%const findRetternChecked = (list,str)=>{%>
+    <%var List;if(Array.isArray(list)){List =list }else{List = [list]};%>
+    <%if(List.includes(str)){return "checked"}else{return ""}%>
+  <%}%>
   <header class='ly_header'>
     <h1 class='main-tytle'>BMC入会申込書</h1>
   </header>
@@ -110,7 +115,6 @@
               <%var homeNo = ''; var mobileNo = '';%>
               <%var homeTelChecked = '';var mobileTelChecked = '';%>
               <%var homeTelDisabled = 'disabled';var mobileTelDisabled = 'disabled';%>
-              <% console.log(data.homeNo);console.log(data.mobileNo); %> 
               <%if(data.homeNo != "")   {homeNo = data.homeNo; homeTelChecked='checked';homeTelDisabled=''}%>
               <%if(data.mobileNo != "") {mobileNo = data.mobileNo; mobileTelChecked='checked';mobileTelDisabled=''}%>
               <p>電話番号</p>
@@ -142,7 +146,7 @@
             <!-- Email -->
             <div class='col-md-8 mb-3'>              
               <label for='email' class='form-label'>E-mail</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<%=data.email%>" required>
               <div class= "invalid-feedback">
                 メールアドレスを正しく入力してください.
               </div>
@@ -154,19 +158,19 @@
               <label for='job' class='form-label'>ご職業</label>
               <select type='form-select' class='form-control' id='job' name='job' value='' required>
                 <option selected disabled value=''>ご職業を選択してください</option>
-                <option value='学生'>学生</option>
-                <option value='会社員'>会社員</option>
-                <option value='会社役員'>会社役員</option>
-                <option value='医師'>医師</option>
-                <option value='看護師'>看護師</option>
-                <option value='エステティシャン'>エステティシャン</option>
-                <option value='接客業'>接客業</option>
-                <option value='自営業'>自営業</option>
-                <option value='アルバイト'>アルバイト</option>
-                <option value='フリーター'>フリーター</option>
-                <option value='主婦'>主婦</option>
-                <option value='無職'>無職</option>
-                <option value='その他'>その他</option>
+                <option value='学生' <%- data.job=='学生'?'selected':''%>>学生</option>
+                <option value='会社員' <%=data.job=='会社員'?"selected":""%>>会社員</option>
+                <option value='会社役員' <%=data.job=='会社役員'?"selected":""%>>会社役員</option>
+                <option value='医師' <%=data.job=='医師'?"selected":""%>>医師</option>
+                <option value='看護師' <%=data.job=='看護師'?"selected":""%>>看護師</option>
+                <option value='エステティシャン' <%=data.job=='エステティシャン'?"selected":""%>>エステティシャン</option>
+                <option value='接客業' <%=data.job=='接客業'?"selected":""%>>接客業</option>
+                <option value='自営業' <%=data.job=='自営業'?"selected":""%>>自営業</option>
+                <option value='アルバイト' <%=data.job=='アルバイト'?"selected":""%>>アルバイト</option>
+                <option value='フリーター' <%=data.job=='フリーター'?"selected":""%>>フリーター</option>
+                <option value='主婦' <%=data.job=='主婦'?"selected":""%>>主婦</option>
+                <option value='無職' <%=data.job=='無職'?"selected":""%>>無職</option>
+                <option value='その他' <%=data.job=='その他'?"selected":""%>>その他</option>
                 <div class='invalid-feedback'>
                   ご職業を選択してください。
                 </div>
@@ -174,7 +178,7 @@
             </div>
             <div class='col-auto mb-3' id='job_other_item'>
               <label for='job_other' class='form-label'>ご職業の詳細</label>
-              <input type='text' class='form-control' id='job_other' name='job_other' value=''
+              <input type='text' class='form-control' id='job_other' name='job_other' value='data.job_other'
                 required disabled>
               <div class='invalid-feedback'>
                 その他を選んだ場合は詳細を記載してください。
@@ -192,7 +196,7 @@
             <tr>
               <th scope='row'>会員様特典<br>郵送or専用メール配信</th>
               <td>
-                <input type='checkbox' name='membership' id='membership' value='会員様特典希望'>
+                <input type='checkbox' name='membership' id='membership' value='会員様特典希望' <%=findRetternChecked(data.membership,'会員様特典希望')%>>
                 <label class='form-label' for='membership'>希望する</label><br>
                 <p class='annotation'>
                   *会員様限定スペシャルチケットを郵送またはメールにてお送りいたします。<br>
@@ -205,7 +209,7 @@
             <tr>
               <th scope='row'>LINEお友達特典<br> ※歯科除く</th>
               <td>
-                <input type='checkbox' name='LINE' id='LINE' value='LINEお友達特典希望'>
+                <input type='checkbox' name='LINE' id='LINE' value='LINEお友達特典希望' <%=findRetternChecked(data.LINE,'LINEお友達特典希望')%> >
                 <label class='form-label' for='LINE'>希望する</label><br>
                 <p class='annotation'>
                   *登録特典1,000円クーポンプレゼント<br>
@@ -218,7 +222,7 @@
             <tr>
               <th scope='row'>メールマガジン配信</th>
               <td>
-                <input type='checkbox' name='mailMagazine' id='mailMagazine' value='メールマガジン配信希望'>
+                <input type='checkbox' name='mailMagazine' id='mailMagazine' value='メールマガジン配信希望' <%=findRetternChecked(data.mailMagazine,'メールマガジン配信希望')%>>
                 <label class='form-label' for='mailMagazine'>希望する</label>
               </td>
               <td><u>月1～2回</u>の配信</td>

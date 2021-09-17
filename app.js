@@ -27,19 +27,19 @@ app.get("/", (req, res)=>{
 // 問診票
 app.get("/monshin", (req, res)=>{
   console.log("問診票表示")
-  res.render("monshin",{data:req.body});
+  res.render("monshin",{data:personalInfo});
 });
 
 //BMC Members入会
 app.get("/BMCMembership", (req, res) => {
   console.log("BMC会員登録票表示")
-  res.render("BMCMembership",{data:req.body});
+  res.render("BMCMembership",{data:personalInfo});
 });
 
 // 美容アンケート
 app.get("/beautySearch", (req, res) => {
   console.log("美容アンケート表示");
-  res.render("beautySearch",{data:req.body});
+  res.render("beautySearch",{data:personalInfo});
 });
 
 
@@ -50,7 +50,7 @@ app.post("/monshin", (req, res)=>{
 });
 
 //　BMC　Membership入会
-app.post("/monshin",(req,res)=>{
+app.post("/BMCMembership",(req,res)=>{
   res.render("BMCMembership",{data:req.body})
 });
 
@@ -83,9 +83,8 @@ app.post("/submit_monshin", (req, res) => {
 
   file_name = "data/CSVMonshin/data_" + req.body.name + ".csv";
   let data = decodeCSV(req.body);
-  personalInfo= makeInfo(req.body)
+  personalInfo= makeInfo(req.body);
   writeFile(file_name,data);
-  customer_data = req.body;
   res.redirect("/BMCMembership");
 });
 
@@ -97,7 +96,7 @@ app.post("/submit_BMCMembership", (req, res) => {
   personalInfo= makeInfo(req.body);
   writeFile(file_name,data);
   makePDF(req.body);
-  res.render("BMCMembership_confirm", { data: req.body });
+  res.redirect("/beautySearch");
 });
 
 // 美容アンケートCSV変換
@@ -119,7 +118,7 @@ app.post("/submit_beautySearch", (req, res) => {
   writeFile(img2_file_name, img2,"base64");
   writeFile(file_name,data);
 
-  res.render("beautySearch_confirm",{data: req.body});
+  res.redirect("/");
 });
 
 ///////////Port開放////////////

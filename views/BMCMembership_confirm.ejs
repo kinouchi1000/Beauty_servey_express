@@ -15,107 +15,128 @@
     <h1 class='main-tytle'>BMC入会申込書</h1>
   </header>
   <div class="container">
-    <div class="section">入力データを確認してください</div>
-    <div class="card mb-3">
-      <div class="card-header">お客様情報</div>
-      <div class="card-body">
-        <table class="table">
-          <tr>
-            <th scope="row">お名前</th>
-            <td><%-data.name%></td>
-          </tr>
-          <tr>
-            <th scope="row">ふりがな</th>
-            <td><%-data.hurigana%></td>
-          </tr>
-          <tr>
-            <th scope="row">生年月日</th>
-            <td><%-data.birthDate%></td>
-          </tr>
-          <tr>
-            <th scope="row">年齢</th>
-            <td><%-data.age%></td>
-          </tr>
-          <tr>
-            <th scope="row">性別</th>
-            <td><%-data.sex%></td>
-          </tr>
-          <tr>
-            <th scope="row">郵便番号</th>
-            <td><%-data.zip11%></td>
-          </tr>
-          <tr>
-            <th scope="row">自宅住所</th>
-            <td><%-data.addr11%></td>
-          </tr>
-          <%if(data.homeNo != ""){%>
-            <tr>
-              <th scope="row">自宅電話番号</th>
-              <td><%-data.homeNo%></td>
-            </tr>
-          <%}if(data.mobileNo != ""){%>
-            <tr>
-              <th scope="row">携帯電話番号</th>
-              <td><%-data.mobileNo%></td>
-            </tr>
-            <tr>
-              <th scope="row">携帯電話番号</th>
-              <td><%-data.email%></td>
-            </tr>
-            <tr>
-              <th scope="row">ご職業</th>
-              <td><%-data.job%></td>
-            </tr>
-          <%}%>
-        </table>
+    <form id="BMCMembership_confirm">
+
+      <div class="section">お客様情報</div>
+      <div class="card mb-3 shadow-sm gray-back">
+        <div class="container">
+          <div class="row">
+            <!-- 名前 -->
+            <div class="col-md-6 mb-3">
+              <label for="name" class="form-label">お名前</label>
+              <input type="text" class="form-control" id="name" name="name" value="<%=data.name%>" readonly>
+            </div>
+
+            <!-- ふりがな -->
+            <div class="col-md-6 mb-3">
+              <label for="hurinana" class="form-label">ふりがな</label>
+              <input type="text" class="form-control" id="hurigana" name="hurigana" value="<%=data.hurigana%>" readonly>
+            </div>
+
+
+            <!-- 生年月日 -->
+            <div class="col-md-4 mb-3">
+              <label for="birthDate" class="form-label">生年月日</label>
+              <input type="date" class="form-control" id="birthDate" name="birthDate" value="<%=data.birthDate%>" readonly>
+            </div>
+
+            <!-- 年齢 -->
+            <div class="col-md-4 mb-3">
+              <label for="age" class="form-label">年齢</label>
+              <div class='input-group'>
+                <input type="number" min="1" max="150" class="form-control no-spin" name="age" value="<%=data.age%>" readonly>
+                <span class="input-group-text" id="age">歳</span>
+              </div>
+            </div>
+
+            <!-- 性別 -->
+            <div class="col-md-2 mb-3">
+              <label for="sex" class="form-label">性別</label>
+              <input type="text" class="form-control" id="sex" name="sex" value="<%=data.sex%>" readonly>
+            </div>
+
+            <!-- 住所 -->
+            <div class="col-md-7 mb-3">
+              <label for="address" class="form-label">住所</label>
+              <div class="input-group" id="address">
+                <span class="input-group-text">〒</span>
+                <input type="text" class="form-control" id="zip11" name="zip11" value="<%=data.zip11%>" size="10" readonly>
+              </div>
+              <input type="text" class="form-control" id="addr11" name="addr11" value="<%=data.addr11%>" readonly>
+            </div>
+
+            <!-- 電話番号 -->
+            <div class="col-md-5 mb-3">
+              <label for="phoneNo" class="form-label">電話番号</label>
+              <div class="input-group" id="phoneNo">
+                <span class="input-group-text">自宅</span>
+                <input type="text" class="form-control" id="homeNo" name="homeNo" value="<%=data.homeNo%>" readonly>
+              </div>
+              <div class="input-group" id="phoneNo">
+                <span class="input-group-text">携帯</span>
+                <input type="text" class="form-control" id="mobileNo" name="mobileNo" value="<%=data.mobileNo%>" readonly>
+              </div>
+            </div>
+            
+            <!-- Email -->
+            <div class='col-md-8 mb-3'>
+              <label for='email' class='form-label'>E-mail</label>
+              <input type="email" class="form-control" id="email" name="email" value='<%=data.email%>' readonly>
+
+            </div>
+            <!-- 職業 -->
+            <div class='col-md-4 md-3'>
+              <label for='job' class='form-label'>ご職業</label>
+              <input type='text' class='form-control' id='job' name='job' value='<%=data.job%>' readonly>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- お得な情報 -->
-    <div class='card mb-3'>
-      <div class="card-header">お得な情報</div>
-      <div class='card-body'>
-        <table class='table'>
-          <tr>
-            <th scope='row'>会員様特典<br>郵送or専用メール配信</th>
-            <td>
-              <%console.log(data.membership);%>
-              <%if(!(data.membership === undefined)){%>
-              <div>希望する</div>
-              <%}else{%>
-                <div>希望しない</div>
-              <%}%>
-            </td>
-            <td><u>年一回</u>を目安に配信</td>
-          </tr>
-          <tr>
-            <th scope='row'>LINEお友達特典<br> ※歯科除く</th>
-            <td>
-              <%if(!(data.LINE === undefined)){%>
-                <div>希望する</div>
-                <%}else{%>
-                  <div>希望しない</div>
-                <%}%>
-            </td>
-            <td>不定期</td>
-          </tr>
-          <tr>
-            <th scope='row'>メールマガジン配信</th>
-            <td>
-              <%if(!(data.mailMagazine === undefined)){%>
-                <div>希望する</div>
-                <%}else{%>
-                  <div>希望しない</div>
-                <%}%>
-            </td>
-            <td><u>月1～2回</u>の配信</td>
-          </tr>
-        </table>
+      <!-- お得な情報 -->
+      <h3>お得な情報</h3>
+      <div class='card mb-3 gray-back'>
+        <div class='container'>
+          <table class='table'>
+            <tr>
+              <th scope='row'>会員様特典<br>郵送or専用メール配信</th>
+              <td>
+                <input type='text' name='membership' class='form-control-plaintext' id='membership' value='<%=data.membership=""? "希望しない":data.membership%>' readonly>
+                <p class='annotation'>
+                  *会員様限定スペシャルチケットを郵送またはメールにてお送りいたします。<br>
+                  ＜例＞　最大5万円金券チケット<br>
+                  ※内容は会員様のランクによって異なります。
+                </p>
+              </td>
+              <td><u>年一回</u>を目安に配信</td>
+            </tr>
+            <tr>
+              <th scope='row'>LINEお友達特典<br> ※歯科除く</th>
+              <td>
+                <input type='text' class="form-control-plaintext" name='LINE' id='LINE' value='<%=data.LINE==""? "希望しない" : data.LINE%>'>
+                <p class='annotation'>
+                  *登録特典1,000円クーポンプレゼント<br>
+                  不定期に豪華特典あり<br>
+                  ＜例＞LINE限定お友だち全員10,000ptプレゼント、LINE限定割引チケット
+                </p>
+              </td>
+              <td>不定期</td>
+            </tr>
+            <tr>
+              <th scope='row'>メールマガジン配信</th>
+              <td>
+                <input type='text' class="form-control-plaintext" name='mailMagazine' id='mailMagazine' value='<%=data.mailMagazine==""? "希望しない":data.mailMagazine%>' readonly>
+              </td>
+              <td><u>月1～2回</u>の配信</td>
+            </tr>
+          </table>
+        </div>
       </div>
-    </div>
-    <div class="d-grid gap-2 col-2 mx-auto mb-3">
-      <input type="button" class="btn btn-secondary" onclick="history.back()" value="フォームへ戻る">
-      <input type="button" class="btn btn-primary" onclick="location.href='beautySearch'" value="次へ">
-    </div>
+      <div class="d-grid gap-2 col-2 mx-auto mb-3">
+        <input type="button" id="back" class="btn btn-secondary" onclick="backBMCMembership()" value="フォームへ戻る">
+        <input type="button" id="next" class="btn btn-primary" onclick="nextBMCMembership()" value="次へ">
+      </div>
+    </form>
   </div>
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -126,6 +147,6 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
   <!-- Confirm用javascript -->
-  <script type="text/javascript" src="/js/confirm.js"></script>
+  <script type="text/javascript" src="/js/confirm_BMCMembership.js"></script>
 </body>
 </html>
