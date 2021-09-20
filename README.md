@@ -6,6 +6,7 @@
 
 - Node.js
 - Express
+- PDFKIT (PDF 生成)
 
 ## frontend
 
@@ -34,7 +35,7 @@ yarn start
 
 # 階層構造
 
-※　 data/以下がない場合、作成してください。
+※ data/以下がない場合、作成してください。
 
 ```
 %HOME%
@@ -44,9 +45,11 @@ yarn start
    │  ├ CSVMembership // BMCMembership
    │  ├ imgData1      // 美容アンケート画像データ1
    │  └ imgData2      // 美容アンケート画像データ2
-   ├ node_module
-   ├ public
-   ├ views
+   ├ fonts            // PDFに使ったフォントを格納
+   ├ node_module      // node.jsに用いたモジュール
+   ├ public           // js,css,img
+   ├ tools            // バックエンドのツール群
+   ├ views            // フロントエンド
    ├ app.js
    ...
 ```
