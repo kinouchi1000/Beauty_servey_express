@@ -71,17 +71,14 @@
             <!-- 電話番号 -->
             <div class="col-md-5 mb-3">
               <label for="phoneNo" class="form-label">電話番号</label>
-              <%if(data.homeTelFlg!=""){%>
               <div class="input-group" id="phoneNo">
                 <span class="input-group-text">自宅</span>
                 <input type="text" class="form-control" id="homeNo" name="homeNo" value="<%=data.homeNo%>" readonly>
               </div>
-              <%}if(data.homeTelFlg=""){%>
               <div class="input-group" id="phoneNo">
                 <span class="input-group-text">携帯</span>
                 <input type="text" class="form-control" id="mobileNo" name="mobileNo" value="<%=data.mobileNo%>" readonly>
               </div>
-              <%}%>
             </div>
           </div>
         </div>
@@ -503,8 +500,8 @@
         </div>
       </div>
       <div class="d-grid gap-2 col-2 mx-auto mb-3">
-        <input type="button" id="back" class="btn btn-secondary" onclick="backMonshin()" value="フォームへ戻る">
         <input type="button" id="next" class="btn btn-primary" onclick="submitMonshin()" value="次へ">
+        <input type="button" id="back" class="btn btn-secondary" onclick="backMonshin()" value="フォームへ戻る">
       </div>
     </form>
   </div>

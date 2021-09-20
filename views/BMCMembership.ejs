@@ -121,7 +121,7 @@
               <div class='input-group has-validation'>
                 <span class='input-group-text' id='homeTel'>
                   自宅
-                  <input type='checkbox' name='homeTelFlg' onclick='HNChange()' <%=homeTelChecked%>>
+                  <input type='checkbox' name='homeTelFlg' onclick='HNChange()' value="true" <%=homeTelChecked%>>
                 </span>
                 <input type='tel' class='form-control' pattern='[0-9]{4}-[0-9]{2}-[0-9]{4}' 
                   name='homeNo' placeholder='0000-00-0000' value='<%=homeNo%>' 
@@ -133,7 +133,7 @@
               <div class='input-group has-validation'>
                 <span class='input-group-text' id='mobileTel'>
                   携帯
-                  <input type='checkbox' name='mobileTelFlg' onclick='MNChange()' <%=mobileTelChecked%>>
+                  <input type='checkbox' name='mobileTelFlg' onclick='MNChange()' value="true" <%=mobileTelChecked%>>
                 </span>
                 <input type='tel' class='form-control' pattern='[0-9]{3}-[0-9]{4}-[0-9]{4}' 
                   name='mobileNo' placeholder='000-0000-0000' value='<%=mobileNo%>' 
@@ -232,6 +232,7 @@
       </div>
       <div class='d-grid gap-2 mb-3 col-2 mx-auto'>
         <input type='submit' class='btn btn-primary ' value='次へ'>
+        <input type="button" class="btn btn-primary" onclick="location.href='/'" value="Topへ戻る">
       </div>
     </form>
   </div>

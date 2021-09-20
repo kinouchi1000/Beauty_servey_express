@@ -28,18 +28,21 @@ app.get("/", (req, res)=>{
 app.get("/monshin", (req, res)=>{
   console.log("問診票表示")
   res.render("monshin",{data:personalInfo});
+  personalInfo = makeInfo(null);
 });
 
 //BMC Members入会
 app.get("/BMCMembership", (req, res) => {
   console.log("BMC会員登録票表示")
   res.render("BMCMembership",{data:personalInfo});
+  personalInfo = makeInfo(null);
 });
 
 // 美容アンケート
 app.get("/beautySearch", (req, res) => {
   console.log("美容アンケート表示");
   res.render("beautySearch",{data:personalInfo});
+  personalInfo = makeInfo(null);
 });
 
 
