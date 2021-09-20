@@ -71,14 +71,17 @@
             <!-- 電話番号 -->
             <div class="col-md-5 mb-3">
               <label for="phoneNo" class="form-label">電話番号</label>
+              <%if(data.homeTelFlg!=""){%>
               <div class="input-group" id="phoneNo">
                 <span class="input-group-text">自宅</span>
                 <input type="text" class="form-control" id="homeNo" name="homeNo" value="<%=data.homeNo%>" readonly>
               </div>
+              <%}if(data.homeTelFlg=""){%>
               <div class="input-group" id="phoneNo">
                 <span class="input-group-text">携帯</span>
                 <input type="text" class="form-control" id="mobileNo" name="mobileNo" value="<%=data.mobileNo%>" readonly>
               </div>
+              <%}%>
             </div>
           </div>
         </div>
