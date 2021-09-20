@@ -33,6 +33,51 @@ job_select.onchange = function () {
     job_other_form.setAttribute("disabled", true);
   }
 };
+//最初のチェック項目ハンドラ
+function agreementChange(){
+  agreement = $('#agreement')
+  if (agreement.prop("checked")) {
+    document.BMC.name.removeAttribute("disabled");
+    document.BMC.hurigana.removeAttribute("disabled");
+    document.BMC.birthDate.removeAttribute("disabled");
+    document.BMC.age.removeAttribute("disabled");
+    document.getElementById("sex_man").removeAttribute("disabled");
+    document.getElementById("sex_woman").removeAttribute("disabled");
+    document.BMC.zip11.removeAttribute("disabled");
+    document.BMC.addr11.removeAttribute("disabled");
+    document.BMC.homeTelFlg.removeAttribute("disabled");
+    if(document.BMC.homeTelFlg.checked){
+      document.BMC.homeNo.removeAttribute("disabled");
+    }
+    document.BMC.mobileTelFlg.removeAttribute("disabled");
+    if(document.BMC.homeTelFlg.checked){
+      document.BMC.mobileNo.removeAttribute("disabled");
+    }
+    document.BMC.email.removeAttribute("disabled");
+    document.BMC.job.removeAttribute("disabled");
+    document.BMC.membership.removeAttribute("disabled");
+    document.BMC.LINE.removeAttribute("disabled");
+    document.BMC.mailMagazine.removeAttribute("disabled");
+  } else {
+    document.BMC.name.setAttribute("disabled", true);
+    document.BMC.hurigana.setAttribute("disabled", true);
+    document.BMC.birthDate.setAttribute("disabled", true);
+    document.BMC.age.setAttribute("disabled", true);
+    document.getElementById("sex_man").setAttribute("disabled",true);
+    document.getElementById("sex_woman").setAttribute("disabled",true);
+    document.BMC.zip11.setAttribute("disabled", true);
+    document.BMC.addr11.setAttribute("disabled", true);
+    document.BMC.homeTelFlg.setAttribute("disabled", true);
+    document.BMC.homeNo.setAttribute("disabled", true);
+    document.BMC.mobileTelFlg.setAttribute("disabled", true);
+    document.BMC.mobileNo.setAttribute("disabled", true);
+    document.BMC.email.setAttribute("disabled", true);
+    document.BMC.job.setAttribute("disabled", true);
+    document.BMC.membership.setAttribute("disabled", true);
+    document.BMC.LINE.setAttribute("disabled", true);
+    document.BMC.mailMagazine.setAttribute("disabled", true);
+  }
+}
 
 //電話番号チェックハンドラ
 function HNChange() {
