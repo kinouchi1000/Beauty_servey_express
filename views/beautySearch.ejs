@@ -12,6 +12,10 @@
 </head>
 
 <body>
+  <%const findRetternChecked = (list,str)=>{%>
+    <%var List;if(Array.isArray(list)){List =list }else{List = [list]};%>
+    <%if(List.includes(str)){return "checked"}else{return ""}%>
+  <%}%>
   <header class='ly_header'>
     <h1 class='main-tytle'>美容アンケート</h1>
   </header>
@@ -36,12 +40,9 @@
                   <tr>
                     <th width='100'>1.額</th>
                     <td>
-                      <label class='form-label'><input type='checkbox' name='Q1'
-                          value='しわ'>しわ</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q1'
-                          value='丸くしたい'>丸くしたい</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q1'
-                          value='眉間のしわ'>眉間のしわ</label>
+                      <label class='form-label'><input type='checkbox' name='Q1' value='しわ' <%=findRetternChecked(data.Q1,"しわ")%>>しわ</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q1' value='丸くしたい' <%=findRetternChecked(data.Q1,"丸くしたい")%>>丸くしたい</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q1' value='眉間のしわ' <%=findRetternChecked(data.Q1,"眉間のしわ")%>>眉間のしわ</label>
                     </td>
                   </tr>
                 </table>
@@ -54,14 +55,10 @@
                   <tr>
                     <th width='100'>２.目元</th>
                     <td>
-                      <label class='form-label'><input type='checkbox' name='Q2'
-                          value='二重の形・幅'>二重の形・幅</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q2'
-                          value='丸くしたい'>丸くしたい</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q2'
-                          value='目頭・目尻の形'>目頭・目尻の形</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q2'
-                          value='目の下のくま'>目の下のくま</label>
+                      <label class='form-label'><input type='checkbox' name='Q2' value='二重の形・幅' <%=findRetternChecked(data.Q2,"二重の形・幅")%>>二重の形・幅</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q2' value='丸くしたい' <%=findRetternChecked(data.Q2,"丸くしたい")%>>丸くしたい</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q2' value='目頭・目尻の形' <%=findRetternChecked(data.Q2,"目頭・目尻の形")%>>目頭・目尻の形</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q2' value='目の下のくま' <%=findRetternChecked(data.Q2,"目の下のくま")%>>目の下のくま</label>
                     </td>
                   </tr>
                 </table>
@@ -75,10 +72,8 @@
                   <tr>
                     <th width='100'>3.口元</th>
                     <td>
-                      <label class='form-label'><input type='checkbox' name='Q3'
-                          value='ほうれい線'>ほうれい線</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q3'
-                          value='口角'>口角</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q3' value='ほうれい線' <%=findRetternChecked(data.Q3,"ほうれい線")%>>ほうれい線</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q3' value='口角' <%=findRetternChecked(data.Q3,"口角")%>>口角</label><br>
                     </td>
                   </tr>
                 </table>
@@ -92,10 +87,8 @@
                   <tr>
                     <th width='100'>4.首元</th>
                     <td>
-                      <label class='form-label'><input type='checkbox' name='Q4'
-                          value='フェイスラインのたるみ'>フェイスラインのたるみ</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q4'
-                          value='首元のしわ'>首元のしわ</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q4' value='フェイスラインのたるみ' <%=findRetternChecked(data.Q4,"フェイスラインのたるみ")%>>フェイスラインのたるみ</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q4' value='首元のしわ' <%=findRetternChecked(data.Q4,"首元のしわ")%>>首元のしわ</label><br>
                     </td>
                   </tr>
                 </table>
@@ -109,18 +102,12 @@
                   <tr>
                     <th width='100'>5.肌質</th>
                     <td>
-                      <label class='form-label'><input type='checkbox' name='Q5'
-                          value='毛穴・ニキビ跡'>毛穴・ニキビ跡</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q5'
-                          value='シミ・そばかす'>シミ・そばかす</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q5'
-                          value='肝斑（かんぱん）'>肝斑（かんぱん）</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q5'
-                          value='ハリ・うるおい'>ハリ・うるおい</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q5'
-                          value='にきび'>にきび</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q5'
-                          value='赤み'>赤み</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q5' value='毛穴・ニキビ跡' <%=findRetternChecked(data.Q5,"毛穴・ニキビ跡")%>>毛穴・ニキビ跡</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q5' value='シミ・そばかす' <%=findRetternChecked(data.Q5,"シミ・そばかす")%>>シミ・そばかす</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q5' value='肝斑（かんぱん）' <%=findRetternChecked(data.Q5,"肝斑（かんぱん）")%>>肝斑（かんぱん）</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q5' value='ハリ・うるおい' <%=findRetternChecked(data.Q5,"ハリ・うるおい")%>>ハリ・うるおい</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q5' value='にきび' <%=findRetternChecked(data.Q5,"にきび")%>>にきび</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q5' value='赤み' <%=findRetternChecked(data.Q5,"赤み")%>>赤み</label><br>
                     </td>
                   </tr>
                 </table>
@@ -135,12 +122,9 @@
                   <tr>
                     <th width='100'>6.鼻</th>
                     <td>
-                      <label class='form-label'><input type='checkbox' name='Q6'
-                          value='鼻筋の高さ'>鼻筋の高さ</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q6'
-                          value='鼻先を小さく'>鼻先を小さく</label><br>
-                      <label class='form-label'><input type='checkbox' name='Q6'
-                          value='小鼻を小さく'>小鼻を小さく</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q6' value='鼻筋の高さ' <%=findRetternChecked(data.Q6,"鼻筋の高さ")%>>鼻筋の高さ</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q6' value='鼻先を小さく' <%=findRetternChecked(data.Q6,"鼻先を小さく")%>>鼻先を小さく</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q6' value='小鼻を小さく' <%=findRetternChecked(data.Q6,"小鼻を小さく")%>>小鼻を小さく</label><br>
                     </td>
                   </tr>
                 </table>
@@ -154,12 +138,9 @@
                   <tr>
                     <th width='100'>7.脂肪</th>
                     <td>
-                      <label class='form-label'><input type='checkbox' name='Q7'
-                          value='ホホ'></label>ホホ<br>
-                      <label class='form-label'><input type='checkbox' name='Q7'
-                          value='アゴ下'></label>アゴ下<br>
-                      <label class='form-label'><input type='checkbox' name='Q7'
-                          value='エラの筋肉'></label>エラの筋肉<br>
+                      <label class='form-label'><input type='checkbox' name='Q7' value='ホホ' <%=findRetternChecked(data.Q7,"ホホ")%>>ホホ</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q7' value='アゴ下' <%=findRetternChecked(data.Q7,"アゴ下")%>>アゴ下</label><br>
+                      <label class='form-label'><input type='checkbox' name='Q7' value='エラの筋肉' <%=findRetternChecked(data.Q7,"エラの筋肉")%>>エラの筋肉</label><br>
                     </td>
                   </tr>
                 </table>
@@ -195,54 +176,46 @@
 
       <!-- 最後の質問　ここだけValidationを入れる -->
       <h3>《該当するものにチェックを入れてください》</h1>
-      <div class='card'>
+      <div class='card mb-3'>
         <div class='card-body '>
+
           <h5 class='card-title'>肩こりや腰痛はありますか？</h5>
           <div class='form-check form-check-inline'>
-            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q8'
-                name='Q8' value='Yes' required>Yes</label>
+            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q8' name='Q8' value='Yes' required <%=findRetternChecked(data.Q8,"Yes")%>>Yes</label>
           </div>
           <div class='form-check form-check-inline'>
-            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q8'
-                name='Q8' value='No' required>No</label>
+            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q8' name='Q8' value='No' required <%=findRetternChecked(data.Q8,"No")%>>No</label>
           </div>
-
           <h5 class='card-title'>肩こりのケアをされたことはありますか?</h5>
           <div class='form-check form-check-inline'>
-            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q9'
-                name='Q9' value='Yes' required>Yes</label>
+            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q9' name='Q9' value='Yes' required <%=findRetternChecked(data.Q9,"Yes")%>>Yes</label>
           </div>
           <div class='form-check form-check-inline'>
-            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q9'
-                name='Q9' value='No' required>No</label>
+            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q9' name='Q9' value='No' required <%=findRetternChecked(data.Q9,"No")%>>No</label>
           </div>
 
 
           <h5 class='card-title'>ご帰宅のご希望時間はございますか？</h5>
           <div class='row'>
-            <div class='col-md-3'>
+            <div class='col-md-3'> 
               <div class='form-check form-check-inline'>
-                <label class='form-check-label'><input class='form-check-input' type='radio' id='Q10' name='Q10'
-                    value='特になし' required>特になし</label>
+                <label class='form-check-label'><input class='form-check-input' type='radio' name='Q10' value='特になし' required <%=findRetternChecked(data.Q10,"特になし")%>>特になし</label>
               </div>
             </div>
             <div class='col-md-3'>
               <div class='form-check form-check-inline'>
-                <label class='form-check-label'><input class='form-check-input' type='radio' id='Q10' name='Q10'
-                    value='なるべく早め' required>なるべく早め</label>
+                <label class='form-check-label'><input class='form-check-input' type='radio' name='Q10' value='なるべく早め' required <%=findRetternChecked(data.Q10,"なるべく早")%>>なるべく早め</label>
               </div>
             </div>
             <div class='col-md-2'>
               <div class='form-check form-check-inline'>
-                <label class='form-check-label'><input class='form-check-input' type='radio' id='Q10' name='Q10'
-                    value='その他' required>その他 </label>
+                <label class='form-check-label'><input class='form-check-input' type='radio' name='Q10' value='その他' required <%=findRetternChecked(data.Q10,"その他")%>>その他 </label>
               </div>
             </div>
             <div class='col-md-4'>
               <div class='input-group'>
                 <span class='input-group-text'>時間</span>
-                <input type='time' class='form-control' id='Q10' name='Q10_time'>
-
+                <input type='time' class='form-control' id='Q10_time' name='Q10_time' value="<%=data.Q10_time%>">
               </div>
             </div>
           </div>
@@ -253,44 +226,38 @@
             <div class='col-md-8'>
               <div class='input-group'>
                 <span class='input-group-text'>食事</span>
-                <input type='text' class='form-control'   id='Q11_meal' name='Q11_meal'>
+                <input type='text' class='form-control'   id='Q11_meal' name='Q11_meal' value="<%=data.Q11_meal%>">
               </div>
             </div>
             <div class='col-md-4 mb-3'>
               <div class='input-group'>
                 <span class='input-group-text'>時間</span>
-                <input type='time' class='form-control'   id='Q11_meal_time' name='Q11_meal_time'>
+                <input type='time' class='form-control'   id='Q11_meal_time' name='Q11_meal_time' value="<%=data.Q11_meal_time%>">
               </div>
             </div>
             <div class='col-md-8'>
               <div class='input-group'>
                 <span class='input-group-text'>水分</span>
-                <input type='text' class='form-control'   id='Q11_water' name='Q11_water'>
+                <input type='text' class='form-control'   id='Q11_water' name='Q11_water' value="<%=data.Q11_water%>">
               </div>
             </div>
             <div class='col-md-4 mb-3'>
               <div class='input-group'>
                 <span class='input-group-text'>時間</span>
-                <input type='time' class='form-control'   id='Q11_water_time' name='Q11_water_time'>
+                <input type='time' class='form-control'   id='Q11_water_time' name='Q11_water_time' value="<%=data.Q11_water_time%>">
               </div>
             </div>
           </div>
 
           <h5 class='card-title'>今までに授乳をされたことはございますか?（ バストのご相談をされる方のみ ）</h5>
           <div class='form-check form-check-inline'>
-            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q12'
-              name='Q12' value='Yes' required>あり</label>
+            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q12' name='Q12' value='あり' required <%=findRetternChecked(data.Q12,"あり")%>>あり</label>
           </div>
           <div class='form-check form-check-inline'>
-            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q12'
-                name='Q12' value='No' required>なし</label>
+            <label class='form-check-label'><input class='form-check-input' type='radio' id='Q12' name='Q12' value='なし' required <%=findRetternChecked(data.Q12,"なし")%>>なし</label>
           </div>
           
         </div>
-      </div>
-      <input type='hidden' class='form-control' id='name' name='name' value='<%=data.name%>' required>
-      <div class="invalid-feedback">
-        お客様情報がありません。BMC会員登録から行ってください。
       </div>
       <div class='d-grid gap-2 col-2 mx-auto mb-3'>
         <input type='submit' class='btn btn-primary ' value='次へ'>

@@ -7,20 +7,19 @@ $(function() {
   });
 }); 
 
-function backBMCMembership(){
-  var form = document.getElementById("BMCMembership_confirm")
+function backBeautySearch(){
+  var form = document.getElementById("beautySearch_confirm")
   //post
   form.method = "post";
-  form.action = "/BMCMembership";
+  form.action = "/beautySearch";
   form.submit();
 }
 
-function nextBMCMembership(){
-
-  var form = document.getElementById("BMCMembership_confirm")
+function nextBeautySearch(){
+  var form = document.getElementById("beautySearch_confirm")
   //post
   form.method = "post";
-  form.action = "submit_BMCMembership";
+  form.action = "/submit_beautySearch";
   form.submit();
 }
 

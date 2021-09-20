@@ -11,106 +11,169 @@
     crossorigin="anonymous">
 </head>
 <body>
+  <%toArray = (arr)=>{if(Array.isArray(arr)){return arr}else{return [arr]}}%>
   <header class='ly_header'>
     <h1 class='main-tytle'>美容アンケート</h1>
   </header>
   <div class='container'>
-    <div class="card mb-3">
-      <div class="card-header section">部位ごとの質問</div>
-      <div class="card-body">
-        <table class="table">
-          <tr>
-            <%if(data.Q1 != undefined){%>
-            <th scope="row">額</th>
-            <%var value = data.Q1;%>
-            <%if(Array.isArray(value)){value = value.join(",");}%>
-            <td><%-value%></td>
-          </tr>
-          <tr>
-            <%}if(data.Q2 != undefined){%>
-            <th scope="row">目元</th>
-            <%var value = data.Q2;%>
-            <%if(Array.isArray(value)){value = value.join(",");}%>
-            <td><%-value%></td>
-          </tr>
-          <tr>
-            <%}if(data.Q103 != undefined){%>
-            <th scope="row">口元</th>
-            <%var value = data.Q103;%>
-            <%if(Array.isArray(value)){value = value.join(",");}%>
-            <td><%-value%></td>
-          </tr>
-          <tr>
-            <%}if(data.Q104 != undefined){%>
-            <th scope="row">首元</th>
-            <%var value = data.Q104;%>
-            <%if(Array.isArray(value)){value = value.join(",");}%>
-            <td><%-value%></td>
-          </tr>
-          <tr>
-            <%}if(data.Q105 != undefined){%>
-            <th scope="row">肌質</th>
-            <%var value = data.Q105;%>
-            <%if(Array.isArray(value)){value = value.join(",");}%>
-            <td><%-value%></td>
-          </tr>
-          <tr>
-            <%}if(data.Q106 != undefined){%>
-            <th scope="row">鼻</th>
-            <%var value = data.Q106;%>
-            <%if(Array.isArray(value)){value = value.join(",");}%>
-            <td><%-value%></td>
-          </tr>
-          <tr>
-            <%}if(data.Q107 != undefined){%>
-            <th scope="row">脂肪</th>
-            <%var value = data.Q107;%>
-            <%if(Array.isArray(value)){value = value.join(",");}%>
-            <td><%-value%></td>
-            <%}%>
-          </tr>
-        </table>
+    <form id='beautySearch_confirm'>
+
+      <div class="section"> 
+        <%=data.name%>様の入力情報
+        <input type="hidden" name="name" value="<%=data.name%>">
       </div>
-    </div>
-    <!-- Q1 -->
-    <div class="card mb-3">
-      <div class="card-header section">その他問診</div>
-      <div class="card-body">
-        <!-- Q8 -->
-        <div class="subsection">肩こりや腰痛の経験 : <%-data.Q8%></div>
+      <div class="card mb-3">
+        <div class="card-header section">部位ごとの質問</div>
+        <div class="card-body">
+          <table class="table">
+            <tr>
+              <th scope="row">顎</th>
+              <td>
+                <%for (var value of toArray(data.Q1)){%>
+                    <input type="hidden" name="Q1" value="<%=value%>"><label><%=value%>   </label>
+                <%}%>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">目元</th>
+              <td>
+                <%for (var value of toArray(data.Q2)){%>
+                    <input type="hidden" name="Q2" value="<%=value%>"><label><%=value%>   </label> 
+                <%}%>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">口元</th>
+              <td>
+                <%for (var value of toArray(data.Q3)){%>
+                    <input type="hidden" name="Q3" value="<%=value%>"><label><%=value%>   </label> 
+                <%}%>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">首元</th>
+              <td>
+                <%for (var value of toArray(data.Q4)){%>
+                    <input type="hidden" name="Q4" value="<%=value%>"><label><%=value%>   </label> 
+                <%}%>
+              </td>
+            </tr>
 
-        <!-- Q9 -->
-        <div class="subsection">肩こりのケアの経験 : <%-data.Q9%></div>
-
-        <!-- Q10 -->
-        <div class="subsection">ご帰宅の希望時間 : <%-data.Q10%></div>
-        <%if(data.Q9 == "その他"){%>
-          <div><%-Q10_time%></div>
-        <%}%>
-
-        <!-- Q11 -->
-        <div class="subsection">本日最後にお召し上がりになられたもの</div>
-        <table class="table">
-          <tr>
-            <th>食事</th>
-            <td><%-data.Q11_meal%></td>
-            <td><%-data.Q11_meal_time%></td>
-          </tr>
-          <tr>
-            <th>水分</th>
-            <td><%-data.Q11_water%></td>
-            <td><%-data.Q11_water_time%></td>
-          </tr>
-        </table>
-
-        <!-- Q12 -->
-        <div class="subsection">授乳経験(バストのご相談をされる方のみ) : <%-data.Q12%></div>
+            <tr>
+              <th scope="row">肌質</th>
+              <td>
+                <%for (var value of toArray(data.Q5)){%>
+                    <input type="hidden" name="Q5" value="<%=value%>"><label><%=value%>   </label> 
+                <%}%>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">肌質</th>
+              <td>
+                <%for (var value of toArray(data.Q6)){%>
+                    <input type="hidden" name="Q6" value="<%=value%>"><label><%=value%>   </label> 
+                <%}%>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">肌質</th>
+              <td>
+                <%for (var value of toArray(data.Q7)){%>
+                    <input type="hidden" name="Q7" value="<%=value%>"><label><%=value%>   </label> 
+                <%}%>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
-    </div>div>
-    <div class="d-grid gap-2 col-2 mx-auto mb-3">
-      <input type="button" class="btn btn-secondary" onclick="history.back()" value="フォームへ戻る">
-      <input type="button" class="btn btn-primary" onclick="location.href='/'" value="トップへ戻る">
-    </div>
+
+      <!-- 画像 -->
+
+      <div class="card mb-3">
+        <div class="card-header section">痩せたい部分</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-auto">
+              <img src="<%=data.data1%>" />
+              <input type="hidden" name="data1" value="<%=data.data1%>">
+            </div>
+            <div class="col-auto">
+              <img src="<%=data.data2%>" />
+              <input type="hidden" name="data2" value="<%=data.data2%>">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 該当するものにチェックを入れてください -->
+      <div class="card mb-3">
+        <div class="card-header section">その他問診</div>
+        <div class="card-body">
+          <!-- Q8 -->
+          <div class="row justify-content-md-left">
+            <label class="col-form-label col-md-auto" for="Q8">肩こりや腰痛の経験 : </label>
+            <div class="col-md-auto">
+              <input type="text" class="form-control-plaintext" id="Q8" name="Q8" value = "<%=data.Q8%>" readonly>
+            </div>
+          </div>
+        
+          <!-- Q9 -->
+          <div class="row justify-content-md-left">
+            <label class="col-form-label col-md-auto" for="Q9">肩こりのケアの経験 : </label>
+            <div class="col-md-auto">
+              <input type="text" class="form-control-plaintext" id="Q9" name="Q9" value = "<%=data.Q9%>" readonly>
+            </div>
+          </div>
+        
+          <!-- Q10 -->
+          <div class="row justify-content-md-left">
+            <label class="col-form-label col-md-auto" for="Q10">ご帰宅の希望時間 : </label>
+            <div class="col-md-auto">
+              <input type="text" class="form-control-plaintext" id="Q10" name="Q10" value = "<%=data.Q10%>" readonly>
+            </div>
+          </div>
+          <%if(data.Q10 == "その他"){%>
+            <div class="row justify-content-md-left">
+              <label class="col-form-label col-md-auto" for="Q10_time"> その他：</label>
+              <div class="col-md-auto">
+                <input type="text" class="form-control" id="Q10_time" name="Q10_time" value="<%=data.Q10_time%>" readonly>
+              </div>
+            </div>
+          <%}%>
+          
+          <!-- Q11 -->
+          <div class="subsection">本日最後にお召し上がりになられたもの</div>
+          <table class="table">
+            <tr>
+              <th>食事</th>
+              <td><input type="text" class="form-control-plaintext" name="Q11_meal" value = "<%=data.Q11_meal%>" readonly></td>
+              <th>時間</th>
+              <td><input type="text" class="form-control-plaintext" name="Q11_meal_time" value = "<%=data.Q11_meal_time%>" readonly></td>
+            </tr>
+            <tr>
+              <th>水分</th>
+              <td><input type="text" class="form-control-plaintext" name="Q11_water" value = "<%=data.Q11_water%>" readonly></td>
+              <th>時間</th>
+              <td><input type="text" class="form-control-plaintext" name="Q11_water_time" value = "<%=data.Q11_water_time%>" readonly></td>
+            </tr>
+          </table>
+        
+          <!-- Q12 -->
+          <div class="row justify-content-md-left">
+            <label class="col-form-label col-md-auto" for="Q12">授乳経験(バストのご相談をされる方のみ) :</label>
+            <div class="col-md-auto">
+              <input type="text" class="form-control-plaintext" id="Q12" name="Q12" value="<%-data.Q12%>">
+            </div>
+          </div>
+        </div>
+      </div>
+    
+          
+      <div class="d-grid gap-2 col-2 mx-auto mb-3">
+        <input type="button" id="back" class="btn btn-secondary" onclick="backBeautySearch()" value="フォームへ戻る">
+        <input type="button" id="next" class="btn btn-primary" onclick="nextBeautySearch()" value="次へ">
+      </div>
+    </form>
   </div>
 
   <!-- bootstrap -->
@@ -122,6 +185,6 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
   <!-- Confirm用javascript -->
-  <script type="text/javascript" src="/js/confirm.js"></script>
+  <script type="text/javascript" src="/js/confirm_beautySearch.js"></script>
 </body>
 </html>

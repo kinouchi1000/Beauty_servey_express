@@ -43,7 +43,7 @@
 
           //ajaxの廃止
           form.method = "post";
-          form.action = "/submit_beautySearch";
+          form.action = "/confirm_beautySearch";
           
           var data1 = document.getElementById('data1')
           var data2 = document.getElementById('data2')

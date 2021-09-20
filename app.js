@@ -67,13 +67,13 @@ app.post("/confirm_monshin", (req, res) => {
 });
 
 //　BMC Membership入会
-app.post("/confirm_monshin", (req, res) => {
-  res.render("monshin_confirm", { data: req.body });
+app.post("/confirm_BMCMembership", (req, res) => {
+  res.render("BMCmembership_confirm", { data: req.body });
 });
 
 //　美容アンケート
-app.post("/confirm_monshin", (req, res) => {
-  res.render("monshin_confirm", { data: req.body });
+app.post("/confirm_beautySearch", (req, res) => {
+  res.render("beautySearch_confirm", { data: req.body });
 });
 
 ///////////////////CSV出力/////////////////////

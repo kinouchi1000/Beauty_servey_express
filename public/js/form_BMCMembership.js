@@ -71,7 +71,7 @@ function MNChange() {
         }else{
             //ajaxの廃止
             form.method = "post";
-            form.action = "/submit_BMCMembership";
+            form.action = "/confirm_BMCMembership";
             console.log(form)
             //document.body.append(data);
             form.submit();
